@@ -27,6 +27,15 @@ export const ptBR = {
     reset: 'Redefinir',
   },
 
+  // Página 404
+  notFound: {
+    title: '404',
+    heading: 'Página Não Encontrada',
+    description: 'Desculpe, a página que você está procurando não existe ou foi movida.',
+    backHome: 'Voltar ao Início',
+    startGame: 'Começar Jogo',
+  },
+
   // Navegação
   navigation: {
     home: 'Início',

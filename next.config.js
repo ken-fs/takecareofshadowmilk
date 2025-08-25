@@ -2,7 +2,7 @@
 const nextConfig = {
   // 启用实验性功能
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // 暂时禁用，避免预渲染问题
     optimizePackageImports: ['@shopify/polaris'],
   },
   

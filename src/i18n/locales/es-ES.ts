@@ -2,9 +2,9 @@ export const esES = {
   // Meta
   meta: {
     title: 'Take Care of Shadow Milk',
-    description: 'Juega Take Care of Your Own Shadow Milk en línea gratis',
+    description: 'Juega Take Care of Your Own Shadow Milk gratis en línea',
   },
-  // 通用
+  // Común
   common: {
     loading: 'Cargando...',
     error: 'Error',
@@ -25,6 +25,15 @@ export const esES = {
     previous: 'Anterior',
     submit: 'Enviar',
     reset: 'Restablecer',
+  },
+
+  // Página 404
+  notFound: {
+    title: '404',
+    heading: 'Página No Encontrada',
+    description: 'Lo sentimos, la página que buscas no existe o ha sido movida.',
+    backHome: 'Volver al Inicio',
+    startGame: 'Comenzar Juego',
   },
 
   // 导航

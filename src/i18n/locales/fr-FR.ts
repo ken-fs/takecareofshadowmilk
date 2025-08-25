@@ -2,9 +2,9 @@ export const frFR = {
   // Meta
   meta: {
     title: 'Take Care of Shadow Milk',
-    description: 'Jouez à Take Care of Your Own Shadow Milk en ligne gratuitement',
+    description: 'Jouez à Take Care of Your Own Shadow Milk gratuitement en ligne',
   },
-  // 通用
+  // Commun
   common: {
     loading: 'Chargement...',
     error: 'Erreur',
@@ -25,6 +25,15 @@ export const frFR = {
     previous: 'Précédent',
     submit: 'Soumettre',
     reset: 'Réinitialiser',
+  },
+
+  // Page 404
+  notFound: {
+    title: '404',
+    heading: 'Page Non Trouvée',
+    description: 'Désolé, la page que vous recherchez n\'existe pas ou a été déplacée.',
+    backHome: 'Retour à l\'Accueil',
+    startGame: 'Commencer le Jeu',
   },
 
   // 导航

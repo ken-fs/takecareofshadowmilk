@@ -4,7 +4,7 @@ export const deDE = {
     title: 'Take Care of Shadow Milk',
     description: 'Spielen Sie Take Care of Your Own Shadow Milk kostenlos online',
   },
-  // 通用
+  // Allgemein
   common: {
     loading: 'Lädt...',
     error: 'Fehler',
@@ -25,6 +25,15 @@ export const deDE = {
     previous: 'Zurück',
     submit: 'Absenden',
     reset: 'Zurücksetzen',
+  },
+
+  // 404 Seite
+  notFound: {
+    title: '404',
+    heading: 'Seite Nicht Gefunden',
+    description: 'Entschuldigung, die gesuchte Seite existiert nicht oder wurde verschoben.',
+    backHome: 'Zurück zur Startseite',
+    startGame: 'Spiel Starten',
   },
 
   // 导航
