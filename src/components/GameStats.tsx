@@ -9,38 +9,38 @@ export function GameStats({ stats }: GameStatsProps) {
   const { t } = useLanguage();
   
   const getStatColor = (value: number) => {
-    if (value >= 80) return 'text-green-600';
-    if (value >= 50) return 'text-yellow-600';
-    if (value >= 20) return 'text-orange-600';
-    return 'text-red-600';
+    if (value >= 80) return 'text-green-400';
+    if (value >= 50) return 'text-yellow-400';
+    if (value >= 20) return 'text-orange-400';
+    return 'text-red-400';
   };
 
   const getStatBarColor = (value: number) => {
-    if (value >= 80) return 'bg-green-500';
-    if (value >= 50) return 'bg-yellow-500';
-    if (value >= 20) return 'bg-orange-500';
-    return 'bg-red-500';
+    if (value >= 80) return 'bg-gradient-to-r from-green-500 to-green-400';
+    if (value >= 50) return 'bg-gradient-to-r from-yellow-500 to-yellow-400';
+    if (value >= 20) return 'bg-gradient-to-r from-orange-500 to-orange-400';
+    return 'bg-gradient-to-r from-red-500 to-red-400';
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
-        <span className="text-2xl mr-2">🍪</span>
+    <div className="card hover:scale-105 transition-transform duration-300">
+      <h3 className="text-xl font-bold text-gradient mb-6 flex items-center">
+        <span className="text-3xl mr-3 animate-bounce-slow">🍪</span>
         {t('game.stats.title')}
       </h3>
       
-      <div className="space-y-4">
+      <div className="space-y-6">
         {/* 能量 */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">⚡ {t('game.stats.energy')}</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-semibold text-gray-300">⚡ {t('game.stats.energy')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.energy)}`}>
               {Math.round(stats.energy)}%
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-3">
             <div 
-              className={`h-2 rounded-full transition-all duration-300 ${getStatBarColor(stats.energy)}`}
+              className={`h-3 rounded-full transition-all duration-500 ${getStatBarColor(stats.energy)} shadow-lg`}
               style={{ width: `${stats.energy}%` }}
             />
           </div>
@@ -48,15 +48,15 @@ export function GameStats({ stats }: GameStatsProps) {
 
         {/* 健康 */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">❤️ {t('game.stats.health')}</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-semibold text-gray-300">❤️ {t('game.stats.health')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.health)}`}>
               {Math.round(stats.health)}%
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-3">
             <div 
-              className={`h-2 rounded-full transition-all duration-300 ${getStatBarColor(stats.health)}`}
+              className={`h-3 rounded-full transition-all duration-500 ${getStatBarColor(stats.health)} shadow-lg`}
               style={{ width: `${stats.health}%` }}
             />
           </div>
@@ -64,15 +64,15 @@ export function GameStats({ stats }: GameStatsProps) {
 
         {/* 饥饿 */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">🍽️ {t('game.stats.hunger')}</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-semibold text-gray-300">🍽️ {t('game.stats.hunger')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.hunger)}`}>
               {Math.round(stats.hunger)}%
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-3">
             <div 
-              className={`h-2 rounded-full transition-all duration-300 ${getStatBarColor(stats.hunger)}`}
+              className={`h-3 rounded-full transition-all duration-500 ${getStatBarColor(stats.hunger)} shadow-lg`}
               style={{ width: `${stats.hunger}%` }}
             />
           </div>
@@ -80,15 +80,15 @@ export function GameStats({ stats }: GameStatsProps) {
 
         {/* 卫生 */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">🧼 {t('game.stats.hygiene')}</span>
+          <div className="flex justify-between items-center mb-3">
+            <span className="text-sm font-semibold text-gray-300">🧼 {t('game.stats.hygiene')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.hygiene)}`}>
               {Math.round(stats.hygiene)}%
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-gray-700 rounded-full h-3">
             <div 
-              className={`h-2 rounded-full transition-all duration-300 ${getStatBarColor(stats.hygiene)}`}
+              className={`h-3 rounded-full transition-all duration-500 ${getStatBarColor(stats.hygiene)} shadow-lg`}
               style={{ width: `${stats.hygiene}%` }}
             />
           </div>
@@ -96,8 +96,8 @@ export function GameStats({ stats }: GameStatsProps) {
       </div>
 
       {/* 状态提示 */}
-      <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-        <p className="text-xs text-blue-700">
+      <div className="mt-6 p-4 glass-effect border border-blue-500/30 rounded-xl">
+        <p className="text-sm text-blue-300 leading-relaxed">
           💡 {t('game.stats.tip')}
         </p>
       </div>

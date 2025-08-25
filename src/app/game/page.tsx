@@ -12,35 +12,37 @@ export default function GamePage() {
   const { t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
+    <div className="min-h-screen">
       {/* 游戏标题栏 */}
-      <div className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
+      <div className="glass-effect sticky top-0 z-50 backdrop-blur-xl px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-3xl font-bold text-gradient">
             {t('game.title')}
           </h1>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-6">
             <button
               onClick={() => toggleGame(!state.isGameActive)}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-6 py-3 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 ${
                 state.isGameActive
-                  ? 'bg-red-600 hover:bg-red-700 text-white'
-                  : 'bg-green-600 hover:bg-green-700 text-white'
+                  ? 'bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white shadow-lg'
+                  : 'bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg'
               }`}
             >
               {state.isGameActive ? t('game.pauseGame') : t('game.startGame')}
             </button>
-            <span className="text-sm text-gray-600">
-              {t('game.gameTime')}: {Math.floor(state.gameTime / 60)}:{(state.gameTime % 60).toString().padStart(2, '0')}
-            </span>
+            <div className="glass-effect px-4 py-2 rounded-xl border border-purple-500/30">
+              <span className="text-sm text-purple-300 font-semibold">
+                {t('game.gameTime')}: {Math.floor(state.gameTime / 60)}:{(state.gameTime % 60).toString().padStart(2, '0')}
+              </span>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto p-4">
-        <div className="grid lg:grid-cols-4 gap-6">
+      <div className="max-w-7xl mx-auto p-6">
+        <div className="grid lg:grid-cols-4 gap-8">
           {/* 左侧边栏 - 状态和房间选择 */}
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-8">
             <GameStats stats={state.stats} />
             <RoomSelector 
               currentRoom={state.currentRoom} 

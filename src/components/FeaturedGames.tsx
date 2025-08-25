@@ -42,29 +42,29 @@ export function FeaturedGames() {
   ];
 
   return (
-    <section className="py-16 px-4 bg-white">
+    <section className="py-24 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
             {t('home.featuredGames.title')}
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             {t('home.featuredGames.subtitle')}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {featuredGames.map((game) => (
-            <div key={game.id} className="bg-gray-50 rounded-xl p-4 text-center hover:shadow-md transition-shadow cursor-pointer">
-              <div className="text-4xl mb-3">{game.image}</div>
-              <h3 className="font-semibold text-gray-900 mb-2">{game.name}</h3>
-              <div className="flex justify-center items-center mb-2">
+            <div key={game.id} className="card text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
+              <div className="text-5xl mb-4 group-hover:animate-bounce-slow">{game.image}</div>
+              <h3 className="font-bold text-gray-200 mb-3 text-lg">{game.name}</h3>
+              <div className="flex justify-center items-center mb-3">
                 {[...Array(game.rating)].map((_, i) => (
                   <span key={i} className="text-yellow-400">⭐</span>
                 ))}
               </div>
-              <p className="text-sm text-gray-600">{game.description}</p>
-              <button className="mt-3 w-full bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 px-3 rounded-lg transition-colors">
+              <p className="text-sm text-gray-400 mb-4 leading-relaxed">{game.description}</p>
+              <button className="w-full btn-primary text-sm py-3 px-4">
                 {t('home.featuredGames.playNow')}
               </button>
             </div>
@@ -72,19 +72,19 @@ export function FeaturedGames() {
         </div>
 
         {/* 新游戏部分 */}
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">{t('home.featuredGames.newGames')}</h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="mt-20">
+          <h3 className="text-3xl font-bold text-gradient mb-10 text-center">{t('home.featuredGames.newGames')}</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {featuredGames.slice(0, 4).map((game) => (
-              <div key={`new-${game.id}`} className="bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-4 text-center border-2 border-green-200">
-                <div className="text-3xl mb-2">{game.image}</div>
-                <h4 className="font-semibold text-gray-900 mb-1">{game.name}</h4>
-                <div className="flex justify-center items-center mb-2">
+              <div key={`new-${game.id}`} className="glass-effect p-6 text-center border-2 border-green-500/30 hover:border-green-400/50 hover:scale-105 transition-all duration-300">
+                <div className="text-4xl mb-3 group-hover:animate-bounce-slow">{game.image}</div>
+                <h4 className="font-bold text-gray-200 mb-2 text-lg">{game.name}</h4>
+                <div className="flex justify-center items-center mb-3">
                   {[...Array(game.rating)].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-sm">⭐</span>
                   ))}
                 </div>
-                <button className="w-full bg-green-600 hover:bg-green-700 text-white text-sm py-2 px-3 rounded-lg transition-colors">
+                <button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-sm py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105">
                   {t('home.featuredGames.newGames')}
                 </button>
               </div>
@@ -93,15 +93,15 @@ export function FeaturedGames() {
         </div>
 
         {/* 开始游戏CTA */}
-        <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
+        <div className="mt-20 text-center">
+          <div className="glass-effect p-12 border border-purple-500/30">
+            <h3 className="text-3xl font-bold mb-6 text-gradient">
               {t('home.featuredGames.startGameCTA')}
             </h3>
-            <p className="text-lg mb-6 opacity-90">
+            <p className="text-xl mb-8 text-gray-300 leading-relaxed max-w-3xl mx-auto">
               {t('home.featuredGames.ctaDescription')}
             </p>
-            <button className="bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-lg text-lg transition-colors">
+            <button className="btn-primary text-xl py-4 px-10 animate-pulse-slow">
               {t('home.featuredGames.startGameButton')}
             </button>
           </div>

@@ -42,64 +42,76 @@ export function GameInterface({ currentRoom, onUseItem }: GameInterfaceProps) {
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
-      <div className="text-center mb-6">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">
+    <div className="card hover:scale-105 transition-transform duration-300">
+      <div className="text-center mb-8">
+        <h3 className="text-3xl font-bold text-gradient mb-3">
           {t(`game.rooms.${currentRoom}.name`)}
         </h3>
-        <p className="text-gray-600">{t(`game.rooms.${currentRoom}.description`)}</p>
+        <p className="text-gray-300 text-lg leading-relaxed">{t(`game.rooms.${currentRoom}.description`)}</p>
       </div>
 
       {/* 房间背景 */}
-      <div className={`relative h-64 rounded-lg mb-6 ${currentRoomData?.background} border-2 border-gray-200`}>
+      <div className={`relative h-80 rounded-2xl mb-8 glass-effect border-2 border-purple-500/30 overflow-hidden`}>
         {/* Shadow Milk 角色 */}
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="text-8xl animate-bounce">
+          <div className="text-9xl animate-bounce-slow">
             {getCharacterEmoji()}
           </div>
         </div>
 
         {/* 房间物品 */}
-        <div className="absolute bottom-4 left-4 right-4">
-          <div className="flex flex-wrap gap-2 justify-center">
+        <div className="absolute bottom-6 left-6 right-6">
+          <div className="flex flex-wrap gap-3 justify-center">
             {roomItems.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg p-2 shadow-sm border border-gray-200 cursor-pointer hover:shadow-md transition-shadow"
+                className="glass-effect rounded-xl p-3 shadow-lg border border-white/20 cursor-pointer hover:scale-110 transition-all duration-300 group"
                 onClick={() => onUseItem(item.id)}
                 title={t(`game.items.${item.id}.description`)}
               >
-                <div className="text-2xl">{item.icon}</div>
-                <div className="text-xs text-gray-600 mt-1">{t(`game.items.${item.id}.name`)}</div>
+                <div className="text-3xl group-hover:animate-bounce-slow">{item.icon}</div>
+                <div className="text-xs text-gray-300 mt-2 font-semibold">{t(`game.items.${item.id}.name`)}</div>
               </div>
             ))}
           </div>
         </div>
 
         {/* 垃圾桶 */}
-        <div className="absolute top-4 right-4">
-          <div className="bg-gray-300 rounded-lg p-3 cursor-pointer hover:bg-gray-400 transition-colors">
-            <div className="text-2xl">🗑️</div>
-            <div className="text-xs text-gray-600">{t('game.interface.trashBin')}</div>
+        <div className="absolute top-6 right-6">
+          <div className="glass-effect rounded-xl p-4 cursor-pointer hover:scale-110 hover:bg-red-500/20 transition-all duration-300 border border-red-500/30">
+            <div className="text-3xl">🗑️</div>
+            <div className="text-xs text-gray-300 font-semibold">{t('game.interface.trashBin')}</div>
           </div>
         </div>
       </div>
 
       {/* 游戏说明 */}
-      <div className="bg-blue-50 rounded-lg p-4">
-        <h4 className="font-semibold text-blue-900 mb-2">{t('game.interface.instructions.title')}</h4>
-        <ul className="text-sm text-blue-800 space-y-1">
-          <li>• {t('game.interface.instructions.clickItems')}</li>
-          <li>• {t('game.interface.instructions.itemEffects')}</li>
-          <li>• {t('game.interface.instructions.dragToTrash')}</li>
-          <li>• {t('game.interface.instructions.switchRooms')}</li>
+      <div className="glass-effect p-6 border border-blue-500/30 rounded-xl">
+        <h4 className="font-bold text-blue-300 mb-4 text-lg">{t('game.interface.instructions.title')}</h4>
+        <ul className="text-sm text-gray-300 space-y-2 leading-relaxed">
+          <li className="flex items-center">
+            <span className="text-blue-400 mr-2">•</span>
+            {t('game.interface.instructions.clickItems')}
+          </li>
+          <li className="flex items-center">
+            <span className="text-blue-400 mr-2">•</span>
+            {t('game.interface.instructions.itemEffects')}
+          </li>
+          <li className="flex items-center">
+            <span className="text-blue-400 mr-2">•</span>
+            {t('game.interface.instructions.dragToTrash')}
+          </li>
+          <li className="flex items-center">
+            <span className="text-blue-400 mr-2">•</span>
+            {t('game.interface.instructions.switchRooms')}
+          </li>
         </ul>
       </div>
 
       {/* 拖拽提示 */}
       {draggedItem && (
-        <div className="mt-4 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-          <p className="text-sm text-yellow-800">
+        <div className="mt-6 p-4 glass-effect border border-yellow-500/30 rounded-xl">
+          <p className="text-sm text-yellow-300 leading-relaxed">
             🎯 {t('game.interface.dragHint')}
           </p>
         </div>
