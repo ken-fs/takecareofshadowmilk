@@ -26,9 +26,9 @@ export default function HomePage() {
               <Link href="/" className="text-gray-200 hover:text-purple-400 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10">
                 {t('navigation.home')}
               </Link>
-              <Link href="/game" className="btn-primary">
+              {/* <Link href="/game" className="btn-primary">
                 {t('home.hero.startGame')}
-              </Link>
+              </Link> */}
               <LanguageSwitcher />
             </div>
           </div>
