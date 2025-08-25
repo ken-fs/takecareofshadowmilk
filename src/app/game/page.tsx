@@ -24,8 +24,8 @@ export default function GamePage() {
       "gamePlatform": "Web Browser",
       "applicationCategory": "Game",
       "operatingSystem": "Any",
-      "url": "http://takecareofshadowmilk.site",
-      // "image": "https://takecareofshadowmilk.org/game-preview.jpg",
+      "url": "http://takecareofshadowmilk.site/game",
+      "image": "http://takecareofshadowmilk.site/game-preview.png",
       "author": {
         "@type": "Organization",
         "name": "GPE_sb3"
@@ -71,12 +71,14 @@ export default function GamePage() {
         <meta property="og:description" content="Start playing Take Care of Shadow Milk game now! Take care of your virtual pet and experience unique Scratch gameplay." />
         <meta property="og:type" content="game" />
         <meta property="og:url" content="http://takecareofshadowmilk.site/game" />
+        <meta property="og:image" content="http://takecareofshadowmilk.site/game-preview.png" />
         <meta property="og:site_name" content="Take Care of Shadow Milk" />
         
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Take Care of Shadow Milk Game" />
         <meta name="twitter:description" content="Start playing Take Care of Shadow Milk game now!" />
+        <meta name="twitter:image" content="http://takecareofshadowmilk.site/game-preview.png" />
         
         {/* 游戏特定meta标签 */}
         <meta name="game:release_date" content="2024-01-01" />

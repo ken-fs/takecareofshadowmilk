@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <!-- 首页 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="http://takecareofshadowmilk.site/en"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="http://takecareofshadowmilk.site/zh"/>
+    <xhtml:link rel="alternate" hreflang="de" href="http://takecareofshadowmilk.site/de"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://takecareofshadowmilk.site/fr"/>
+    <xhtml:link rel="alternate" hreflang="es" href="http://takecareofshadowmilk.site/es"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="http://takecareofshadowmilk.site/pt"/>
+  </url>
+  
+  <!-- 游戏页面 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/game</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="http://takecareofshadowmilk.site/en/game"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="http://takecareofshadowmilk.site/zh/game"/>
+    <xhtml:link rel="alternate" hreflang="de" href="http://takecareofshadowmilk.site/de/game"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="http://takecareofshadowmilk.site/fr/game"/>
+    <xhtml:link rel="alternate" hreflang="es" href="http://takecareofshadowmilk.site/es/game"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="http://takecareofshadowmilk.site/pt/game"/>
+  </url>
+  
+  <!-- 关于页面 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/about</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- 联系页面 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/contact</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <!-- 隐私政策 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/privacy</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <!-- 使用条款 -->
+  <url>
+    <loc>http://takecareofshadowmilk.site/terms</loc>
+    <lastmod>2024-01-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset> 

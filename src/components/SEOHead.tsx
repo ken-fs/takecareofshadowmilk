@@ -16,7 +16,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   description,
   keywords = [],
   image = '/og-image.jpg',
-  url = 'https://takecareofshadowmilk.org',
+  url = 'https://takecareofshadowmilk.site',
   type = 'website',
   structuredData
 }) => {

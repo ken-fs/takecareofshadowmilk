@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# 禁止爬取管理页面
+Disallow: /admin/
+Disallow: /api/
+
+# 允许爬取游戏页面
+Allow: /game/
+Allow: /about/
+Allow: /contact/
+
+# 网站地图
+Sitemap: http://takecareofshadowmilk.site/sitemap.xml
+
+# 爬取延迟
+Crawl-delay: 1 
