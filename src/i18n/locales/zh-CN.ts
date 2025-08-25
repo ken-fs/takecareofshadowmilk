@@ -1,4 +1,9 @@
 export const zhCN = {
+  // 元数据
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: '免费在线玩Take Care of Your Own Shadow Milk游戏',
+  },
   // 通用
   common: {
     loading: '加载中...',

@@ -1,4 +1,9 @@
 export const esES = {
+  // Meta
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: 'Juega Take Care of Your Own Shadow Milk en línea gratis',
+  },
   // 通用
   common: {
     loading: 'Cargando...',

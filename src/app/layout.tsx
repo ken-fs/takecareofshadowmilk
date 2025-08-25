@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Take Care of Shadow Milk',
-  description: '免费在线玩Take Care of Your Own Shadow Milk游戏',
+  description: 'Play Take Care of Your Own Shadow Milk game online for free',
 };
 
 export default function RootLayout({

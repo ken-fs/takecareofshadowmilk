@@ -1,4 +1,9 @@
 export const enUS = {
+  // Meta
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: 'Play Take Care of Your Own Shadow Milk game online for free',
+  },
   // Common
   common: {
     loading: 'Loading...',

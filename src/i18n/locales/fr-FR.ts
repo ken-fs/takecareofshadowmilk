@@ -1,4 +1,9 @@
 export const frFR = {
+  // Meta
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: 'Jouez à Take Care of Your Own Shadow Milk en ligne gratuitement',
+  },
   // 通用
   common: {
     loading: 'Chargement...',

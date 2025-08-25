@@ -1,4 +1,9 @@
 export const deDE = {
+  // Meta
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: 'Spielen Sie Take Care of Your Own Shadow Milk kostenlos online',
+  },
   // 通用
   common: {
     loading: 'Lädt...',

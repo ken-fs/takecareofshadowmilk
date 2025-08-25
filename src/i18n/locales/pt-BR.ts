@@ -1,4 +1,9 @@
 export const ptBR = {
+  // Meta
+  meta: {
+    title: 'Take Care of Shadow Milk',
+    description: 'Jogue Take Care of Your Own Shadow Milk online gratuitamente',
+  },
   // Comum
   common: {
     loading: 'Carregando...',
