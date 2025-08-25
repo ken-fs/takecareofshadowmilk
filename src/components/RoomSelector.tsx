@@ -1,4 +1,5 @@
 import { ROOMS } from '@/data/gameData';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface RoomSelectorProps {
   currentRoom: string;
@@ -6,11 +7,13 @@ interface RoomSelectorProps {
 }
 
 export function RoomSelector({ currentRoom, onRoomChange }: RoomSelectorProps) {
+  const { t } = useLanguage();
+  
   return (
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
         <span className="text-2xl mr-2">🏠</span>
-        选择房间
+        {t('game.roomSelector.title')}
       </h3>
       
       <div className="space-y-3">
@@ -26,8 +29,8 @@ export function RoomSelector({ currentRoom, onRoomChange }: RoomSelectorProps) {
           >
             <div className="flex items-center justify-between">
               <div>
-                <h4 className="font-medium">{room.name}</h4>
-                <p className="text-sm text-gray-600 mt-1">{room.description}</p>
+                <h4 className="font-medium">{t(`game.rooms.${room.id}.name`)}</h4>
+                <p className="text-sm text-gray-600 mt-1">{t(`game.rooms.${room.id}.description`)}</p>
               </div>
               <div className={`w-3 h-3 rounded-full ${
                 currentRoom === room.id ? 'bg-blue-500' : 'bg-gray-300'
@@ -40,7 +43,7 @@ export function RoomSelector({ currentRoom, onRoomChange }: RoomSelectorProps) {
       {/* 房间信息 */}
       <div className="mt-4 p-3 bg-gray-50 rounded-lg">
         <p className="text-xs text-gray-600">
-          💡 提示：不同房间有不同的物品和功能。探索每个房间来发现新的游戏内容！
+          💡 {t('game.roomSelector.tip')}
         </p>
       </div>
     </div>

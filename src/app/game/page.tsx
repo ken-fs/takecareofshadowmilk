@@ -5,9 +5,11 @@ import { GameStats } from '@/components/GameStats';
 import { RoomSelector } from '@/components/RoomSelector';
 import { Inventory } from '@/components/Inventory';
 import { useGameState } from '@/hooks/useGameState';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function GamePage() {
   const { state, changeRoom, useItem, addItem, removeItem, toggleGame } = useGameState();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50">
@@ -15,7 +17,7 @@ export default function GamePage() {
       <div className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-900">
-            Take Care of Shadow Milk
+            {t('game.title')}
           </h1>
           <div className="flex items-center space-x-4">
             <button
@@ -26,10 +28,10 @@ export default function GamePage() {
                   : 'bg-green-600 hover:bg-green-700 text-white'
               }`}
             >
-              {state.isGameActive ? '暂停游戏' : '开始游戏'}
+              {state.isGameActive ? t('game.pauseGame') : t('game.startGame')}
             </button>
             <span className="text-sm text-gray-600">
-              游戏时间: {Math.floor(state.gameTime / 60)}:{(state.gameTime % 60).toString().padStart(2, '0')}
+              {t('game.gameTime')}: {Math.floor(state.gameTime / 60)}:{(state.gameTime % 60).toString().padStart(2, '0')}
             </span>
           </div>
         </div>

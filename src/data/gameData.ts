@@ -4,110 +4,110 @@ export const GAME_ITEMS: GameItem[] = [
   // 食物类
   {
     id: 'cookie',
-    name: '饼干',
+    name: 'cookie',
     type: 'food',
     icon: '🍪',
     effect: { hunger: 20, energy: 5 },
-    description: '美味的饼干，可以填饱肚子'
+    description: 'cookie'
   },
   {
     id: 'milk',
-    name: '牛奶',
+    name: 'milk',
     type: 'food',
     icon: '🥛',
     effect: { hunger: 15, health: 10 },
-    description: '营养丰富的牛奶'
+    description: 'milk'
   },
   {
     id: 'cake',
-    name: '蛋糕',
+    name: 'cake',
     type: 'food',
     icon: '🎂',
     effect: { hunger: 30, energy: 15, health: 5 },
-    description: '美味的生日蛋糕'
+    description: 'cake'
   },
   
   // 玩具类
   {
     id: 'ball',
-    name: '球',
+    name: 'ball',
     type: 'toy',
     icon: '⚽',
     effect: { energy: 10 },
-    description: '可以玩的球'
+    description: 'ball'
   },
   {
     id: 'teddy',
-    name: '泰迪熊',
+    name: 'teddy',
     type: 'toy',
     icon: '🧸',
     effect: { energy: 5, health: 5 },
-    description: '可爱的泰迪熊玩偶'
+    description: 'teddy'
   },
   
   // 工具类
   {
     id: 'bath',
-    name: '洗澡',
+    name: 'bath',
     type: 'tool',
     icon: '🛁',
     effect: { hygiene: 30, energy: -5 },
-    description: '清洁身体，提高卫生度'
+    description: 'bath'
   },
   {
     id: 'medicine',
-    name: '药物',
+    name: 'medicine',
     type: 'tool',
     icon: '💊',
     effect: { health: 25, energy: -10 },
-    description: '治疗疾病，恢复健康'
+    description: 'medicine'
   },
   
   // 家具类
   {
     id: 'bed',
-    name: '床',
+    name: 'bed',
     type: 'furniture',
     icon: '🛏️',
     effect: { energy: 40, health: 10 },
-    description: '舒适的床，可以休息'
+    description: 'bed'
   },
   {
     id: 'chair',
-    name: '椅子',
+    name: 'chair',
     type: 'furniture',
     icon: '🪑',
     effect: { energy: 5 },
-    description: '可以坐的椅子'
+    description: 'chair'
   }
 ];
 
 export const ROOMS: Room[] = [
   {
     id: 'bedroom',
-    name: '卧室',
-    description: '温馨的卧室，有床和椅子',
+    name: 'bedroom',
+    description: 'bedroom',
     background: 'bg-gradient-to-br from-blue-100 to-purple-100',
     items: GAME_ITEMS.filter(item => item.type === 'furniture')
   },
   {
     id: 'kitchen',
-    name: '厨房',
-    description: '充满香味的厨房，有各种食物',
+    name: 'kitchen',
+    description: 'kitchen',
     background: 'bg-gradient-to-br from-yellow-100 to-orange-100',
     items: GAME_ITEMS.filter(item => item.type === 'food')
   },
   {
     id: 'bathroom',
-    name: '浴室',
-    description: '干净的浴室，可以洗澡',
+    name: 'bathroom',
+    description: 'bathroom',
     background: 'bg-gradient-to-br from-cyan-100 to-blue-100',
     items: GAME_ITEMS.filter(item => item.type === 'tool')
   },
   {
     id: 'playroom',
-    name: '游戏室',
-    description: '充满乐趣的游戏室，有各种玩具',
+    name: 'playroom',
+    description: 'playroom',
     background: 'bg-gradient-to-br from-green-100 to-emerald-100',
     items: GAME_ITEMS.filter(item => item.type === 'toy')
   }

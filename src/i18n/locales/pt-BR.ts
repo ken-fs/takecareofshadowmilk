@@ -1,5 +1,5 @@
 export const ptBR = {
-  // 通用
+  // Comum
   common: {
     loading: 'Carregando...',
     error: 'Erro',
@@ -22,7 +22,7 @@ export const ptBR = {
     reset: 'Redefinir',
   },
 
-  // 导航
+  // Navegação
   navigation: {
     home: 'Início',
     game: 'Jogo',
@@ -35,113 +35,159 @@ export const ptBR = {
     register: 'Registrar',
   },
 
-  // 首页
+  // Página inicial
   home: {
     hero: {
       title: 'Take Care of Shadow Milk',
-      subtitle: 'Bem-vindo ao takecareofshadowmilk.org, seu lugar para jogar o jogo Scratch em alta "Take Care of Your Own Shadow Milk" totalmente grátis, direto no seu navegador. Sem downloads, sem cadastros—apenas clique e comece a se divertir!',
+      subtitle: 'Bem-vindo ao takecareofshadowmilk.org, onde você pode jogar o popular jogo Scratch "Take Care of Your Own Shadow Milk" gratuitamente, direto no seu navegador. Sem downloads, sem registro - apenas clique para começar a jogar!',
       startGame: 'Começar Jogo Agora',
       learnMore: 'Saiba Mais',
     },
     features: {
-      title: 'Características do Jogo',
-      rating: '4.5 Avaliação',
+      title: 'Recursos do Jogo',
+      rating: 'Avaliação 4.5',
       scratchGames: '🎮 Jogos Scratch',
       simulationGames: '🏠 Jogos de Simulação',
       casualGames: '😊 Jogos Casuais',
     },
     summary: {
       title: 'O que é o Jogo Take Care of Shadow Milk?',
-      description: 'Take Care of Shadow Milk, também conhecido como Take Care of Your Own Shadow Milk, é um jogo estilo pet virtual desenvolvido na plataforma Scratch. É simples mas super viciante. Neste jogo Scratch feito por fãs por GPE_sb3, você pode passar tempo com Shadow Milk Cookie do Cookie Run: Kingdom. A reviravolta? Você é responsável pelo que acontece com ele... e não há regras.',
+      description: 'Take Care of Shadow Milk, também conhecido como Take Care of Your Own Shadow Milk, é um jogo estilo pet virtual desenvolvido na plataforma Scratch. É simples mas super viciante. Neste jogo Scratch feito por fãs criado por GPE_sb3, você pode brincar com Shadow Milk Cookie do Cookie Run: Kingdom. A parte interessante? Você é responsável por decidir o destino dele... e não há regras.',
       gameType: 'Tipo de Jogo',
-      gameTypeValue: 'Estilo sandbox "simulador de pet" no Scratch',
+      gameTypeValue: 'Estilo "Simulação de Pet" Sandbox no Scratch',
       creator: 'Criador',
       creatorValue: 'GPE_sb3',
       mainCharacter: 'Personagem Principal',
       mainCharacterValue: 'Shadow Milk Cookie do Cookie Run: Kingdom',
       gameplay: 'Jogabilidade',
-      gameplayValue: 'Interação baseada em salas: alimentar, banhar, brincar ou pregar peças no personagem',
+      gameplayValue: 'Interação baseada em salas: alimentar, dar banho, brincar ou pregar peças no personagem',
       statusMetrics: 'Métricas de Status',
       statusMetricsValue: 'Ícones de energia, saúde, fome, higiene',
-      whyTrendy: 'Por que Está na Moda',
-      whyTrendyValue: 'Sem regras + caos = material viral para memes do TikTok!',
+      whyTrendy: 'Por que é Popular',
+      whyTrendyValue: 'Sem regras + caos = material viral de meme do TikTok!',
     },
     howToPlay: {
       title: 'Como Jogar?',
       steps: [
-        'Mova-se entre diferentes salas como o quarto, cozinha ou banheiro.',
-        'Arraste e solte comida, objetos ou ferramentas aleatórias para ver como Your Own Shadow Milk Cookie reage.',
+        'Mova-se entre diferentes salas como quarto, cozinha ou banheiro.',
+        'Arraste e solte comida, itens ou ferramentas aleatórias para ver como Your Own Shadow Milk Cookie reage.',
         'Fique de olho nas barras de fome, energia, saúde e higiene dele.',
-        'Jogue fora coisas que você não precisa arrastando para a lixeira.',
+        'Arraste itens indesejados para a lixeira para descartá-los.',
       ],
-      conclusion: 'É isso! Sem missões, sem tela de game over—apenas experimentação infinita.',
+      conclusion: 'É isso! Sem missões, sem tela de game over - apenas experimentação infinita.',
     },
     whyPopular: {
-      title: 'Por que Todo Mundo Está Falando Sobre Este Jogo Shadow Milk?',
-      description: 'Este jogo explodiu no TikTok porque as pessoas adoram fazer clipes curtos e engraçados das reações loucas do Shadow Milk. É fofo, é sombrio e é imprevisível—exatamente o tipo de caos que o torna tão divertido de compartilhar com amigos.',
-      appeal: 'Seu apelo está na mistura de estética fofa com um tom sinistro e travesso, refletindo a personalidade enganosa do Shadow Milk Cookie.',
+      title: 'Por que todos estão falando sobre este jogo Shadow Milk?',
+      description: 'Este jogo viralizou no TikTok porque as pessoas adoram fazer vídeos curtos das reações loucas do Shadow Milk. É fofo, sombrio e imprevisível - é esse caos que o torna tão divertido e vale a pena compartilhar com amigos.',
+      appeal: 'Seu apelo está na mistura de estética fofa com tons sombrios e travessos, refletindo a personalidade enganosa do Shadow Milk Cookie.',
     },
     featuredGames: {
       title: 'Jogos em Destaque',
       subtitle: 'Além do Take Care of Shadow Milk, também oferecemos outros jogos emocionantes de pet virtual e casuais',
       newGames: 'Novos Jogos',
-      playNow: 'Jogar Agora',
-      startGameCTA: 'Agora Comece a Jogar Take Care of Your Own Shadow Milk',
-      ctaDescription: 'Você não precisa do Scratch ou TikTok para experimentar. Temos o jogo completo aqui. Apenas toque em jogar e veja que tipo de cuidador Shadow Milk você se torna—doce e carinhoso, ou totalmente maluco.',
+      playNow: 'Jogar',
+      startGameCTA: 'Comece a Jogar Take Care of Your Own Shadow Milk Agora',
+      ctaDescription: 'Você não precisa do Scratch ou TikTok para experimentar. Temos o jogo completo aqui. Apenas clique em começar e veja que tipo de cuidador do Shadow Milk você se tornará - doce e carinhoso, ou completamente louco.',
       startGameButton: 'Começar Jogo Agora',
     },
   },
 
-  // 游戏页面
+  // Página do jogo
   game: {
     title: 'Take Care of Shadow Milk',
-    startGame: 'Começar Jogo',
+    startGame: 'Iniciar Jogo',
     pauseGame: 'Pausar Jogo',
     gameTime: 'Tempo de Jogo',
     stats: {
       title: 'Status do Shadow Milk',
-      energy: '⚡ Energia',
-      health: '❤️ Saúde',
-      hunger: '🍽️ Fome',
-      hygiene: '🧼 Higiene',
-      tip: '💡 Dica: Quando a fome ou energia estiver abaixo de 20%, a saúde diminuirá gradualmente. Lembre-se de cuidar do seu Shadow Milk a tempo!',
+      energy: 'Energia',
+      health: 'Saúde',
+      hunger: 'Fome',
+      hygiene: 'Higiene',
+      tip: 'Dica: Quando a fome ou energia cai abaixo de 20%, a saúde diminuirá gradualmente. Lembre-se de cuidar do seu Shadow Milk a tempo!',
+    },
+    roomSelector: {
+      title: 'Selecionar Sala',
+      tip: 'Dica: Diferentes salas têm diferentes itens e funções. Explore cada sala para descobrir novo conteúdo do jogo!',
     },
     rooms: {
-      title: 'Selecionar Sala',
-      bedroom: 'Quarto',
-      bedroomDesc: 'Quarto aconchegante com cama e cadeira',
-      kitchen: 'Cozinha',
-      kitchenDesc: 'Cozinha perfumada com vários alimentos',
-      bathroom: 'Banheiro',
-      bathroomDesc: 'Banheiro limpo onde você pode tomar banho',
-      playroom: 'Sala de Jogos',
-      playroomDesc: 'Sala de jogos cheia de diversão com vários brinquedos',
-      tip: '💡 Dica: Diferentes salas têm diferentes itens e funções. Explore cada sala para descobrir novo conteúdo do jogo!',
+      bedroom: {
+        name: 'Quarto',
+        description: 'Quarto aconchegante com cama e cadeiras',
+      },
+      kitchen: {
+        name: 'Cozinha',
+        description: 'Cozinha perfumada com vários alimentos',
+      },
+      bathroom: {
+        name: 'Banheiro',
+        description: 'Banheiro limpo onde você pode tomar banho',
+      },
+      playroom: {
+        name: 'Sala de Jogos',
+        description: 'Sala de jogos divertida com vários brinquedos',
+      },
     },
     interface: {
-      gameInstructions: 'Instruções do Jogo',
-      instructions: [
-        '• Clique nos itens da sala para usá-los',
-        '• Diferentes itens afetam diferentes atributos do Shadow Milk',
-        '• Arraste itens indesejados para a lixeira',
-        '• Mude entre salas para explorar mais conteúdo',
-      ],
-      dragTip: '🎯 Arrastando item, clique em uma posição na sala para usá-lo',
+      trashBin: 'Lixeira',
+      instructions: {
+        title: 'Instruções do Jogo',
+        clickItems: 'Clique nos itens da sala para usá-los',
+        itemEffects: 'Diferentes itens afetam diferentes atributos do Shadow Milk',
+        dragToTrash: 'Arraste itens indesejados para a lixeira',
+        switchRooms: 'Alterne entre salas para explorar mais conteúdo',
+      },
+      dragHint: 'Arrastando item, clique em uma posição na sala para usá-lo',
     },
     inventory: {
       title: 'Inventário',
       empty: 'Inventário está vazio',
-      emptyDesc: 'Colete itens nas salas para começar o jogo',
+      emptyHint: 'Colete itens nas salas para começar o jogo',
       use: 'Usar',
-      discard: 'Descartar',
-      tip: '💡 Dica: Usar itens afetará o status do Shadow Milk. Use itens sabiamente para manter sua saúde!',
+      remove: 'Remover',
+      useItem: 'Usar Item',
+      removeItem: 'Remover Item',
+      tip: 'Dica: Usar itens afeta o status do Shadow Milk. Use itens sabiamente para manter a saúde dele!',
+      itemTypes: {
+        food: 'Comida',
+        toy: 'Brinquedo',
+        tool: 'Ferramenta',
+        furniture: 'Móvel',
+        other: 'Outro',
+      },
+    },
+    items: {
+      apple: {
+        name: 'Maçã',
+        description: 'Maçã vermelha fresca que pode aumentar o valor da fome',
+      },
+      cookie: {
+        name: 'Biscoito',
+        description: 'Biscoito delicioso que pode aumentar a fome e energia',
+      },
+      milk: {
+        name: 'Leite',
+        description: 'Leite nutritivo que pode aumentar a fome e saúde',
+      },
+      toy: {
+        name: 'Brinquedo',
+        description: 'Brinquedo divertido que pode aumentar a energia e humor',
+      },
+      soap: {
+        name: 'Sabão',
+        description: 'Produto de limpeza que pode aumentar o valor da higiene',
+      },
+      medicine: {
+        name: 'Medicamento',
+        description: 'Produto médico que pode aumentar o valor da saúde',
+      },
     },
   },
 
-  // 页脚
+  // Rodapé
   footer: {
     aboutUs: 'Sobre Nós',
-    aboutUsDesc: 'Take Care of Shadow Milk é um site independente e não é afiliado a nenhuma organização.',
+    aboutUsDesc: 'Take Care of Shadow Milk é um site independente sem afiliação a qualquer organização.',
     gameCategories: 'Categorias de Jogos',
     scratchGames: 'Jogos Scratch',
     simulationGames: 'Jogos de Simulação',
@@ -153,10 +199,10 @@ export const ptBR = {
     petSalon: 'Pet Salon',
     myPetCare: 'My Pet Care Salon',
     contactUs: 'Entre em Contato',
-    copyrightNotice: 'Procedimento de Aviso de Violação de Direitos Autorais',
+    copyrightNotice: 'Procedimento de Notificação de Violação de Direitos Autorais',
     termsOfUse: 'Termos de Uso',
     privacyPolicy: 'Política de Privacidade',
     copyright: '© 2024 Take Care of Shadow Milk. Todos os direitos reservados.',
-    disclaimer: 'Nota: Este é um site não oficial feito por fãs e não é afiliado a nenhuma organização oficial.',
+    disclaimer: 'Nota: Este é um site não oficial feito por fãs sem afiliação a qualquer organização oficial.',
   },
 }; 

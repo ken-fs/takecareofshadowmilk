@@ -1,10 +1,13 @@
 import { ShadowMilkStats } from '@/types/game';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface GameStatsProps {
   stats: ShadowMilkStats;
 }
 
 export function GameStats({ stats }: GameStatsProps) {
+  const { t } = useLanguage();
+  
   const getStatColor = (value: number) => {
     if (value >= 80) return 'text-green-600';
     if (value >= 50) return 'text-yellow-600';
@@ -23,14 +26,14 @@ export function GameStats({ stats }: GameStatsProps) {
     <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
       <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center">
         <span className="text-2xl mr-2">🍪</span>
-        Shadow Milk 状态
+        {t('game.stats.title')}
       </h3>
       
       <div className="space-y-4">
         {/* 能量 */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">⚡ 能量</span>
+            <span className="text-sm font-medium text-gray-700">⚡ {t('game.stats.energy')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.energy)}`}>
               {Math.round(stats.energy)}%
             </span>
@@ -46,7 +49,7 @@ export function GameStats({ stats }: GameStatsProps) {
         {/* 健康 */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">❤️ 健康</span>
+            <span className="text-sm font-medium text-gray-700">❤️ {t('game.stats.health')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.health)}`}>
               {Math.round(stats.health)}%
             </span>
@@ -62,7 +65,7 @@ export function GameStats({ stats }: GameStatsProps) {
         {/* 饥饿 */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">🍽️ 饥饿</span>
+            <span className="text-sm font-medium text-gray-700">🍽️ {t('game.stats.hunger')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.hunger)}`}>
               {Math.round(stats.hunger)}%
             </span>
@@ -78,7 +81,7 @@ export function GameStats({ stats }: GameStatsProps) {
         {/* 卫生 */}
         <div>
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm font-medium text-gray-700">🧼 卫生</span>
+            <span className="text-sm font-medium text-gray-700">🧼 {t('game.stats.hygiene')}</span>
             <span className={`text-sm font-bold ${getStatColor(stats.hygiene)}`}>
               {Math.round(stats.hygiene)}%
             </span>
@@ -95,7 +98,7 @@ export function GameStats({ stats }: GameStatsProps) {
       {/* 状态提示 */}
       <div className="mt-4 p-3 bg-blue-50 rounded-lg">
         <p className="text-xs text-blue-700">
-          💡 提示：当饥饿或能量低于20%时，健康值会逐渐下降。记得及时照顾你的Shadow Milk！
+          💡 {t('game.stats.tip')}
         </p>
       </div>
     </div>
