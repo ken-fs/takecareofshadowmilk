@@ -49,6 +49,12 @@ export const enUS = {
       learnMore: 'Learn More',
       cookieName: 'Shadow Milk Cookie',
       cookieDescription: 'A cute character from Cookie Run: Kingdom, now it\'s your turn to take care of him!',
+      // 新增：游戏iframe相关文案
+      gameLoading: 'Game Loading...',
+      startGameButton: '🎮 Start Game',
+      fullscreenButton: '📱 Fullscreen Mode',
+      exitFullscreenButton: '📱 Exit Fullscreen',
+      gameTitle: 'Take Care of Shadow Milk Game',
     },
     features: {
       title: 'Game Features',

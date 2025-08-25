@@ -1,77 +1,43 @@
-import { useReducer, useCallback, useEffect } from 'react';
+import { useReducer, useCallback, useEffect, useState, useRef } from 'react';
 import { GameState, GameAction, ShadowMilkStats } from '@/types/game';
 import { INITIAL_STATS } from '@/data/gameData';
 
 const initialState: GameState = {
   currentRoom: 'bedroom',
-  stats: INITIAL_STATS,
   inventory: [],
-  gameTime: 0,
-  isGameActive: false
+  stats: INITIAL_STATS,
+  isGameActive: false,
+  gameTime: 0
 };
 
 function gameReducer(state: GameState, action: GameAction): GameState {
   switch (action.type) {
     case 'CHANGE_ROOM':
-      return {
-        ...state,
-        currentRoom: action.roomId
-      };
-    
+      return { ...state, currentRoom: action.roomId };
     case 'USE_ITEM':
-      const item = state.inventory.find(i => i.id === action.itemId);
-      if (!item) return state;
-      
-      const newStats = { ...state.stats };
-      Object.entries(item.effect).forEach(([key, value]) => {
-        if (value && key in newStats) {
-          const statKey = key as keyof ShadowMilkStats;
-          newStats[statKey] = Math.max(0, Math.min(100, newStats[statKey] + value));
-        }
-      });
-      
       return {
         ...state,
-        stats: newStats,
-        inventory: state.inventory.filter(i => i.id !== action.itemId)
+        inventory: state.inventory.filter(item => item.id !== action.itemId)
       };
-    
-    case 'UPDATE_STATS':
-      const updatedStats = { ...state.stats, ...action.stats };
-      Object.keys(updatedStats).forEach(key => {
-        const statKey = key as keyof ShadowMilkStats;
-        updatedStats[statKey] = Math.max(0, Math.min(100, updatedStats[statKey]));
-      });
-      
-      return {
-        ...state,
-        stats: updatedStats
-      };
-    
     case 'ADD_ITEM':
       return {
         ...state,
         inventory: [...state.inventory, action.item]
       };
-    
     case 'REMOVE_ITEM':
       return {
         ...state,
-        inventory: state.inventory.filter(i => i.id !== action.itemId)
+        inventory: state.inventory.filter(item => item.id !== action.itemId)
       };
-    
-    case 'UPDATE_TIME':
-      return {
-        ...state,
-        gameTime: action.time
-      };
-    
     case 'TOGGLE_GAME':
-      return {
-        ...state,
-        isGameActive: action.isActive
+      return { ...state, isGameActive: action.isActive };
+    case 'UPDATE_STATS':
+      return { 
+        ...state, 
+        stats: { ...state.stats, ...action.stats } 
       };
-    
+    case 'UPDATE_TIME':
+      return { ...state, gameTime: action.time };
     default:
       return state;
   }
@@ -128,5 +94,53 @@ export function useGameState() {
     addItem,
     removeItem,
     toggleGame
+  };
+}
+
+// 新增：专门用于iframe游戏的Hook
+interface UseIframeGameReturn {
+  isGameLoaded: boolean;
+  isFullscreen: boolean;
+  handleGameLoad: () => void;
+  handleFullscreen: () => void;
+  iframeRef: React.RefObject<HTMLIFrameElement>;
+}
+
+export function useIframeGame(): UseIframeGameReturn {
+  const [isGameLoaded, setIsGameLoaded] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  const handleGameLoad = useCallback(() => {
+    setIsGameLoaded(true);
+  }, []);
+
+  const handleFullscreen = useCallback(() => {
+    if (iframeRef.current) {
+      if (iframeRef.current.requestFullscreen) {
+        iframeRef.current.requestFullscreen();
+        setIsFullscreen(true);
+      }
+    }
+  }, []);
+
+  // 监听全屏状态变化
+  useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+
+    document.addEventListener('fullscreenchange', handleFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreenChange);
+    };
+  }, []);
+
+  return {
+    isGameLoaded,
+    isFullscreen,
+    handleGameLoad,
+    handleFullscreen,
+    iframeRef,
   };
 } 

@@ -47,7 +47,7 @@ export default function HomePage() {
         <GameHero />
         <GameSummary />
         <GameFeatures />
-        <FeaturedGames />
+        {/* <FeaturedGames /> */}
       </main>
 
       {/* 页脚 */}

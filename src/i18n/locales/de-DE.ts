@@ -47,6 +47,14 @@ export const deDE = {
       subtitle: 'Willkommen bei takecareofshadowmilk.org, deinem Ort, um das angesagte Scratch-Spiel "Take Care of Your Own Shadow Milk" völlig kostenlos direkt in deinem Browser zu spielen. Keine Downloads, keine Anmeldungen—klicke einfach und fang an, Spaß zu haben!',
       startGame: 'Jetzt Spiel Starten',
       learnMore: 'Mehr Erfahren',
+      cookieName: 'Shadow Milk Cookie',
+      cookieDescription: 'Ein süßer Charakter aus Cookie Run: Kingdom, jetzt ist es deine Aufgabe, dich um ihn zu kümmern!',
+      // 新增：游戏iframe相关文案
+      gameLoading: 'Spiel wird geladen...',
+      startGameButton: '🎮 Spiel starten',
+      fullscreenButton: '📱 Vollbildmodus',
+      exitFullscreenButton: '📱 Vollbildmodus beenden',
+      gameTitle: 'Take Care of Shadow Milk Spiel',
     },
     features: {
       title: 'Spielmerkmale',

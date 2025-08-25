@@ -49,6 +49,12 @@ export const zhCN = {
       learnMore: '了解更多',
       cookieName: 'Shadow Milk Cookie',
       cookieDescription: '来自 Cookie Run: Kingdom 的可爱角色，现在由你来照顾！',
+      // 新增：游戏iframe相关文案
+      gameLoading: '游戏加载中...',
+      startGameButton: '🎮 开始游戏',
+      fullscreenButton: '📱 全屏模式',
+      exitFullscreenButton: '📱 退出全屏',
+      gameTitle: 'Take Care of Shadow Milk 游戏',
     },
     features: {
       title: '游戏特色',
