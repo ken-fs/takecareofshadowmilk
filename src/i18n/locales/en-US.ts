@@ -39,7 +39,8 @@ export const enUS = {
   // Navigation
   navigation: {
     home: 'Home',
-    game: 'Game',
+    games: 'Games',
+    game: 'Play',
     about: 'About',
     contact: 'Contact',
     settings: 'Settings',
@@ -175,6 +176,11 @@ export const enUS = {
     startGame: 'Start Game',
     pauseGame: 'Pause Game',
     gameTime: 'Game Time',
+    detail: {
+      externalLinkTip: 'A safe external play link is available.',
+      playExternally: 'Open External Game',
+      opensInNewTab: 'Opens in a new tab',
+    },
     stats: {
       title: 'Shadow Milk Status',
       energy: 'Energy',
@@ -271,6 +277,34 @@ export const enUS = {
         description: 'A chair you can sit on',
       },
     },
+  },
+
+  // Sidebar
+  sidebar: {
+    recentlyPlayed: 'Recently Played',
+    viewAllPopular: 'View All Popular Games →',
+    playMoreGames: 'Play More Games',
+    discoverGames: 'Discover hundreds of free online games',
+    exploreGames: 'Explore Games',
+    gamesCount: 'games',
+    plays: 'plays',
+    lastPlayed: 'Last played',
+    new: 'NEW',
+    trending: 'Trending',
+  },
+
+  // Category labels
+  categories: {
+    'scratch-games': 'Scratch Games',
+    'simulation-games': 'Simulation Games',
+    'casual-games': 'Casual Games',
+    'virtual-pet': 'Virtual Pet',
+    'shadow-milk-variants': 'Shadow Milk Variants',
+  },
+
+  // Games page
+  games: {
+    all: 'All Games',
   },
 
   // Footer

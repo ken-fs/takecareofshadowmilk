@@ -1,11 +1,9 @@
 'use client';
-
-import Link from 'next/link';
+import { Sidebar } from '@/components/Sidebar';
 import { GameHero } from '@/components/GameHero';
 import { GameFeatures } from '@/components/GameFeatures';
 import { GameSummary } from '@/components/GameSummary';
 import { FeaturedGames } from '@/components/FeaturedGames';
-import { LanguageSwitcher } from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HomePage() {
@@ -13,28 +11,6 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* 导航栏 */}
-      <nav className="glass-effect sticky top-0 z-50 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center">
-              <h1 className="text-3xl font-bold text-gradient">
-                {t('home.hero.title')}
-              </h1>
-            </div>
-            <div className="flex items-center space-x-6">
-              <Link href="/" className="text-gray-200 hover:text-purple-400 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:bg-white/10">
-                {t('navigation.home')}
-              </Link>
-              {/* <Link href="/game" className="btn-primary">
-                {t('home.hero.startGame')}
-              </Link> */}
-              <LanguageSwitcher />
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* 主要内容 */}
       <main className="relative">
         {/* 背景装饰 */}
@@ -43,11 +19,22 @@ export default function HomePage() {
           <div className="absolute top-1/2 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow animation-delay-1000"></div>
           <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-indigo-500/20 rounded-full blur-3xl animate-pulse-slow animation-delay-2000"></div>
         </div>
-        
-        <GameHero />
-        <GameSummary />
-        <GameFeatures />
-        {/* <FeaturedGames /> */}
+
+        {/* 内容区域：侧边栏 + 主内容 */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="flex flex-col lg:flex-row gap-8">
+            {/* 侧边栏 */}
+            <Sidebar />
+
+            {/* 主内容区域 */}
+            <div className="flex-1 min-w-0">
+              <GameHero />
+              <GameSummary />
+              <GameFeatures />
+              <FeaturedGames />
+            </div>
+          </div>
+        </div>
       </main>
 
       {/* 页脚 */}

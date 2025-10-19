@@ -39,7 +39,8 @@ export const frFR = {
   // 导航
   navigation: {
     home: 'Accueil',
-    game: 'Jeu',
+    games: 'Jeux',
+    game: 'Jouer',
     about: 'À propos',
     contact: 'Contact',
     settings: 'Paramètres',
@@ -120,6 +121,11 @@ export const frFR = {
     startGame: 'Commencer le Jeu',
     pauseGame: 'Mettre en Pause',
     gameTime: 'Temps de Jeu',
+    detail: {
+      externalLinkTip: 'Un lien de jeu externe sécurisé est disponible.',
+      playExternally: 'Ouvrir le jeu externe',
+      opensInNewTab: 'S’ouvre dans un nouvel onglet',
+    },
     stats: {
       title: 'Statut de Shadow Milk',
       energy: '⚡ Énergie',
@@ -158,6 +164,20 @@ export const frFR = {
       discard: 'Jeter',
       tip: '💡 Conseil : Utiliser des éléments affectera le statut de Shadow Milk. Utilisez les éléments sagement pour maintenir sa santé !',
     },
+  },
+
+  // Catégories
+  categories: {
+    'scratch-games': 'Jeux Scratch',
+    'simulation-games': 'Jeux de Simulation',
+    'casual-games': 'Jeux Casuels',
+    'virtual-pet': 'Animal Virtuel',
+    'shadow-milk-variants': 'Variantes Shadow Milk',
+  },
+
+  // Page Jeux
+  games: {
+    all: 'Tous les Jeux',
   },
 
   // 页脚

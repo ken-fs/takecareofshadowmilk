@@ -1,45 +1,11 @@
 import { useLanguage } from '@/contexts/LanguageContext';
+import Link from 'next/link';
+import { getFeaturedGames } from '@/data/gamesData';
 
 export function FeaturedGames() {
   const { t } = useLanguage();
   
-  const featuredGames = [
-    {
-      id: 'pou-online',
-      name: t('footer.pouOnline'),
-      rating: 5,
-      image: '🎮',
-      description: t('home.featuredGames.games.pouOnline.description')
-    },
-    {
-      id: 'my-dogy',
-      name: t('footer.myDogy'),
-      rating: 5,
-      image: '🐕',
-      description: t('home.featuredGames.games.myDogy.description')
-    },
-    {
-      id: 'pet-salon',
-      name: t('footer.petSalon'),
-      rating: 5,
-      image: '✂️',
-      description: t('home.featuredGames.games.petSalon.description')
-    },
-    {
-      id: 'pet-salon-2',
-      name: t('footer.petSalon') + ' 2',
-      rating: 5,
-      image: '🎨',
-      description: t('home.featuredGames.games.petSalon2.description')
-    },
-    {
-      id: 'my-pet-care',
-      name: t('footer.myPetCare'),
-      rating: 5,
-      image: '🏥',
-      description: t('home.featuredGames.games.myPetCare.description')
-    }
-  ];
+  const featuredGames = getFeaturedGames();
 
   return (
     <section className="py-24 px-4">
@@ -55,19 +21,19 @@ export function FeaturedGames() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {featuredGames.map((game) => (
-            <div key={game.id} className="card text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
-              <div className="text-5xl mb-4 group-hover:animate-bounce-slow">{game.image}</div>
+            <Link key={game.id} href={`/game/${game.slug}`} className="card text-center hover:scale-105 transition-all duration-300 cursor-pointer group">
+              <div className="text-5xl mb-4 group-hover:animate-bounce-slow">{game.icon}</div>
               <h3 className="font-bold text-gray-200 mb-3 text-lg">{game.name}</h3>
               <div className="flex justify-center items-center mb-3">
-                {[...Array(game.rating)].map((_, i) => (
+                {[...Array(Math.round(game.rating))].map((_, i) => (
                   <span key={i} className="text-yellow-400">⭐</span>
                 ))}
               </div>
               <p className="text-sm text-gray-400 mb-4 leading-relaxed">{game.description}</p>
-              <button className="w-full btn-primary text-sm py-3 px-4">
+              <span className="w-full inline-block btn-primary text-sm py-3 px-4 text-center">
                 {t('home.featuredGames.playNow')}
-              </button>
-            </div>
+              </span>
+            </Link>
           ))}
         </div>
 
@@ -76,18 +42,18 @@ export function FeaturedGames() {
           <h3 className="text-3xl font-bold text-gradient mb-10 text-center">{t('home.featuredGames.newGames')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {featuredGames.slice(0, 4).map((game) => (
-              <div key={`new-${game.id}`} className="glass-effect p-6 text-center border-2 border-green-500/30 hover:border-green-400/50 hover:scale-105 transition-all duration-300">
-                <div className="text-4xl mb-3 group-hover:animate-bounce-slow">{game.image}</div>
+              <Link key={`new-${game.id}`} href={`/game/${game.slug}`} className="glass-effect p-6 text-center border-2 border-green-500/30 hover:border-green-400/50 hover:scale-105 transition-all duration-300">
+                <div className="text-4xl mb-3 group-hover:animate-bounce-slow">{game.icon}</div>
                 <h4 className="font-bold text-gray-200 mb-2 text-lg">{game.name}</h4>
                 <div className="flex justify-center items-center mb-3">
-                  {[...Array(game.rating)].map((_, i) => (
+                  {[...Array(Math.round(game.rating))].map((_, i) => (
                     <span key={i} className="text-yellow-400 text-sm">⭐</span>
                   ))}
                 </div>
-                <button className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-sm py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105">
+                <span className="w-full inline-block bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white text-sm py-3 px-4 rounded-xl transition-all duration-300 transform hover:scale-105">
                   {t('home.featuredGames.newGames')}
-                </button>
-              </div>
+                </span>
+              </Link>
             ))}
           </div>
         </div>

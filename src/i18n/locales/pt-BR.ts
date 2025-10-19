@@ -39,7 +39,8 @@ export const ptBR = {
   // Navegação
   navigation: {
     home: 'Início',
-    game: 'Jogo',
+    games: 'Jogos',
+    game: 'Jogar',
     about: 'Sobre',
     contact: 'Contato',
     settings: 'Configurações',
@@ -120,6 +121,11 @@ export const ptBR = {
     startGame: 'Iniciar Jogo',
     pauseGame: 'Pausar Jogo',
     gameTime: 'Tempo de Jogo',
+    detail: {
+      externalLinkTip: 'Um link externo seguro está disponível.',
+      playExternally: 'Abrir jogo externo',
+      opensInNewTab: 'Abre em uma nova aba',
+    },
     stats: {
       title: 'Status do Shadow Milk',
       energy: 'Energia',
@@ -204,6 +210,20 @@ export const ptBR = {
         description: 'Produto médico que pode aumentar o valor da saúde',
       },
     },
+  },
+
+  // Categorias
+  categories: {
+    'scratch-games': 'Jogos Scratch',
+    'simulation-games': 'Jogos de Simulação',
+    'casual-games': 'Jogos Casuais',
+    'virtual-pet': 'Animal Virtual',
+    'shadow-milk-variants': 'Variantes de Shadow Milk',
+  },
+
+  // Página de Jogos
+  games: {
+    all: 'Todos os Jogos',
   },
 
   // Rodapé

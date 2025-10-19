@@ -39,7 +39,8 @@ export const deDE = {
   // 导航
   navigation: {
     home: 'Startseite',
-    game: 'Spiel',
+    games: 'Spiele',
+    game: 'Spielen',
     about: 'Über uns',
     contact: 'Kontakt',
     settings: 'Einstellungen',
@@ -120,6 +121,11 @@ export const deDE = {
     startGame: 'Spiel Starten',
     pauseGame: 'Spiel Pausieren',
     gameTime: 'Spielzeit',
+    detail: {
+      externalLinkTip: 'Externer sicherer Spiel-Link verfügbar.',
+      playExternally: 'Externes Spiel öffnen',
+      opensInNewTab: 'Öffnet in einem neuen Tab',
+    },
     stats: {
       title: 'Shadow Milk Status',
       energy: '⚡ Energie',
@@ -158,6 +164,20 @@ export const deDE = {
       discard: 'Verwerfen',
       tip: '💡 Tipp: Das Verwenden von Gegenständen wird den Status von Shadow Milk beeinflussen. Verwende Gegenstände weise, um seine Gesundheit zu erhalten!',
     },
+  },
+
+  // Kategorienamen
+  categories: {
+    'scratch-games': 'Scratch-Spiele',
+    'simulation-games': 'Simulationsspiele',
+    'casual-games': 'Casual-Spiele',
+    'virtual-pet': 'Virtuelles Haustier',
+    'shadow-milk-variants': 'Shadow-Milk-Varianten',
+  },
+
+  // Spiele-Seite
+  games: {
+    all: 'Alle Spiele',
   },
 
   // 页脚

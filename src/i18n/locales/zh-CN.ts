@@ -39,7 +39,8 @@ export const zhCN = {
   // 导航
   navigation: {
     home: '首页',
-    game: '游戏',
+    games: '所有游戏',
+    game: '开始游戏',
     about: '关于',
     contact: '联系',
     settings: '设置',
@@ -175,6 +176,11 @@ export const zhCN = {
     startGame: '开始游戏',
     pauseGame: '暂停游戏',
     gameTime: '游戏时间',
+    detail: {
+      externalLinkTip: '可用安全的外部游玩链接。',
+      playExternally: '在外部站点打开游戏',
+      opensInNewTab: '将在新标签页打开',
+    },
     stats: {
       title: 'Shadow Milk 状态',
       energy: '能量',
@@ -271,6 +277,34 @@ export const zhCN = {
         description: '可以坐的椅子',
       },
     },
+  },
+
+  // 侧边栏
+  sidebar: {
+    recentlyPlayed: '最近玩过',
+    viewAllPopular: '查看所有热门游戏 →',
+    playMoreGames: '玩更多游戏',
+    discoverGames: '发现数百个免费在线游戏',
+    exploreGames: '探索游戏',
+    gamesCount: '个游戏',
+    plays: '次游玩',
+    lastPlayed: '最后游玩',
+    new: '新游戏',
+    trending: '热门',
+  },
+
+  // 分类标签
+  categories: {
+    'scratch-games': 'Scratch游戏',
+    'simulation-games': '模拟游戏',
+    'casual-games': '休闲游戏',
+    'virtual-pet': '虚拟宠物',
+    'shadow-milk-variants': 'Shadow Milk 变体',
+  },
+
+  // 游戏页
+  games: {
+    all: '全部游戏',
   },
 
   // 页脚
