@@ -27,9 +27,9 @@ export function Header() {
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="text-4xl group-hover:animate-bounce-slow">🍪</div>
             <div>
-              <h1 className="text-2xl font-bold text-gradient group-hover:scale-105 transition-transform">
+              <p className="text-2xl font-bold text-gradient group-hover:scale-105 transition-transform">
                 {t('home.hero.title')}
-              </h1>
+              </p>
               <p className="text-xs text-gray-400 hidden sm:block">
                 {t('home.features.rating')} ⭐⭐⭐⭐⭐
               </p>
