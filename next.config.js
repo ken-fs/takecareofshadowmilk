@@ -59,10 +59,12 @@ const nextConfig = {
             value: 'on',
           },
           {
-            // The game is a cross-origin iframe, so frame-src has to allow it.
+            // Every game is a cross-origin iframe, so frame-src has to allow
+            // each host it embeds from — verify against gamesData.ts embedUrl
+            // before editing that directive.
             // 'unsafe-inline'/'unsafe-eval' are required by Next's inline
             // bootstrap and the Scratch player; tighten with nonces only if you
-            // are prepared to test the embed afterwards.
+            // are prepared to test the embeds afterwards.
             //
             // AdSense needs more origins than the snippet suggests: the loader
             // pulls further scripts from googlesyndication/adtrafficquality,
@@ -77,7 +79,11 @@ const nextConfig = {
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://*.googlesyndication.com https://*.google.com https://*.adtrafficquality.google https://*.doubleclick.net",
-              "frame-src 'self' https://takecareofshadowmilk.org https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com",
+              // Both game hosts. .org serves only the anchor game's embed; the
+              // other 31 games are iframed from .com. Omitting .com here broke
+              // all 31 — the pages still returned 200 with an empty game area,
+              // which is why it did not show up as a broken link.
+              "frame-src 'self' https://takecareofshadowmilk.org https://takecareofshadowmilk.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com",
               "base-uri 'self'",
               "form-action 'self'",
               "object-src 'none'",

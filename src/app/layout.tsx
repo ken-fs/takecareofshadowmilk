@@ -151,6 +151,7 @@ export default function RootLayout({
         {/* The three third-party origins this page always reaches. Warming the
             connections costs nothing and takes DNS + TLS off the critical path. */}
         <link rel="preconnect" href="https://takecareofshadowmilk.org" />
+        <link rel="preconnect" href="https://takecareofshadowmilk.com" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
