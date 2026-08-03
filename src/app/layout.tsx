@@ -4,7 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Header } from '@/components/Header';
-import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript } from '@/lib/seo';
+import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript, ADSENSE_PUBLISHER_ID } from '@/lib/seo';
 
 // Display: carnival-poster serif. Body: rounded and plush. Mono: game telemetry.
 const fraunces = Fraunces({
@@ -167,7 +167,7 @@ export default function RootLayout({
         */}
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4969757168101127"
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUBLISHER_ID}`}
           crossOrigin="anonymous"
         />
         <script
