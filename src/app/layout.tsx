@@ -154,6 +154,22 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        {/*
+          AdSense loader as a raw tag, on purpose. Via <Script
+          strategy="afterInteractive"> the server HTML got only a
+          <link rel="preload">, with the real tag serialized into the RSC
+          payload and injected client-side — invisible to AdSense's verification
+          crawler, which does not execute JS and reads only <head>. A literal
+          tag here is what "place this between <head> and </head>" means.
+
+          `async` keeps it off the critical path. The layout does not remount on
+          client-side navigation, so this is not re-injected.
+        */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4969757168101127"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLdScript(siteJsonLd)}
@@ -187,23 +203,8 @@ export default function RootLayout({
             gtag('config', 'G-KY850MFQQZ');
           `}
         </Script>
-        {/*
-          AdSense loader. afterInteractive rather than the async tag AdSense
-          hands you: both are non-blocking, but next/script dedupes the tag
-          across client-side navigations, which a raw <script async> in the
-          layout does not.
-
-          Ads are not placed anywhere yet — this only loads the library, which
-          is what site verification and Auto ads need. Note that Auto ads inject
-          slots into the layout at runtime, so turning them on can move content
-          after paint and cost you CLS; measure before leaving it on.
-        */}
-        <Script
-          id="adsbygoogle-init"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4969757168101127"
-          strategy="afterInteractive"
-          crossOrigin="anonymous"
-        />
+        {/* The AdSense loader lives in <head> — see the comment there for why
+            it is a raw tag rather than next/script. */}
         <LanguageProvider>
           {/* Global navigation */}
           <Header />
