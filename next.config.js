@@ -63,15 +63,21 @@ const nextConfig = {
             // 'unsafe-inline'/'unsafe-eval' are required by Next's inline
             // bootstrap and the Scratch player; tighten with nonces only if you
             // are prepared to test the embed afterwards.
+            //
+            // AdSense needs more origins than the snippet suggests: the loader
+            // pulls further scripts from googlesyndication/adtrafficquality,
+            // renders each ad in an iframe (frame-src), and beacons back over
+            // connect-src. Miss any one of these and ads fail silently with only
+            // a console CSP violation to show for it.
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://pagead2.googlesyndication.com https://*.googlesyndication.com https://*.googleadservices.com https://*.adtrafficquality.google https://*.doubleclick.net",
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms",
-              "frame-src 'self' https://takecareofshadowmilk.org",
+              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://*.googlesyndication.com https://*.google.com https://*.adtrafficquality.google https://*.doubleclick.net",
+              "frame-src 'self' https://takecareofshadowmilk.org https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com",
               "base-uri 'self'",
               "form-action 'self'",
               "object-src 'none'",

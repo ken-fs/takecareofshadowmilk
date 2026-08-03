@@ -153,6 +153,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://takecareofshadowmilk.org" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLdScript(siteJsonLd)}
@@ -186,6 +187,23 @@ export default function RootLayout({
             gtag('config', 'G-KY850MFQQZ');
           `}
         </Script>
+        {/*
+          AdSense loader. afterInteractive rather than the async tag AdSense
+          hands you: both are non-blocking, but next/script dedupes the tag
+          across client-side navigations, which a raw <script async> in the
+          layout does not.
+
+          Ads are not placed anywhere yet — this only loads the library, which
+          is what site verification and Auto ads need. Note that Auto ads inject
+          slots into the layout at runtime, so turning them on can move content
+          after paint and cost you CLS; measure before leaving it on.
+        */}
+        <Script
+          id="adsbygoogle-init"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4969757168101127"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         <LanguageProvider>
           {/* Global navigation */}
           <Header />
