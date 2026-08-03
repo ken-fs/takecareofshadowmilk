@@ -149,23 +149,6 @@ export const zhCN = {
       startGameCTA: '现在就开始玩 Take Care of Your Own Shadow Milk',
       ctaDescription: '你不需要 Scratch 或 TikTok 来尝试。我们这里有完整的游戏。只需点击开始，看看你会成为什么样的 Shadow Milk 照顾者——甜蜜和关怀，还是完全疯狂。',
       startGameButton: '立即开始游戏',
-      games: {
-        pouOnline: {
-          description: '经典的虚拟宠物游戏',
-        },
-        myDogy: {
-          description: '可爱的狗狗虚拟宠物',
-        },
-        petSalon: {
-          description: '宠物美容沙龙游戏',
-        },
-        petSalon2: {
-          description: '宠物美容沙龙续作',
-        },
-        myPetCare: {
-          description: '宠物护理沙龙',
-        },
-      },
     },
   },
 
@@ -316,10 +299,6 @@ export const zhCN = {
     casualGames: '休闲游戏',
     virtualPet: '虚拟宠物',
     popularGames: '热门游戏',
-    pouOnline: 'Pou Online',
-    myDogy: 'My DOGY Virtual Pet',
-    petSalon: 'Pet Salon',
-    myPetCare: 'My Pet Care Salon',
     contactUs: '联系我们',
     copyrightNotice: '版权侵权通知程序',
     termsOfUse: '使用条款',

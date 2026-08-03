@@ -51,10 +51,17 @@ export default function HomePage() {
             <div>
               <p className="eyebrow">{t('footer.popularGames')}</p>
               <ul className="mt-4 space-y-2.5 text-sm text-bone/60">
-                <li><Link href="/games/popular" className="transition-colors hover:text-ice">{t('footer.pouOnline')}</Link></li>
-                <li><Link href="/games/popular" className="transition-colors hover:text-ice">{t('footer.myDogy')}</Link></li>
-                <li><Link href="/games/popular" className="transition-colors hover:text-ice">{t('footer.petSalon')}</Link></li>
-                <li><Link href="/games/popular" className="transition-colors hover:text-ice">{t('footer.myPetCare')}</Link></li>
+                {/*
+                  Real games that exist on this site, each linking to its own
+                  page. This list previously named four third-party commercial
+                  games that were never hosted here — and pointed all four at
+                  the same /games/popular page. Names are not translated: they
+                  are the games' actual titles.
+                */}
+                <li><Link href="/game/take-care-of-shadow-milk" className="transition-colors hover:text-ice">Take Care of Shadow Milk</Link></li>
+                <li><Link href="/game/take-care-of-your-own-pure-vanilla" className="transition-colors hover:text-ice">Take Care of Pure Vanilla</Link></li>
+                <li><Link href="/game/take-care-of-your-own-hollyberry" className="transition-colors hover:text-ice">Take Care of Hollyberry</Link></li>
+                <li><Link href="/games/popular" className="transition-colors hover:text-ice">{t('footer.popularGames')}</Link></li>
               </ul>
             </div>
             <div>

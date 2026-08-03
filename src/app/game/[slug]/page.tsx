@@ -48,7 +48,13 @@ export default function GameDetailPage() {
     );
   }
 
-  const embedSrc = game.embedUrl ?? 'https://takecareofshadowmilk.org/take-care-of-shadow-milk.embed';
+  /*
+    No fallback embed. This used to default to the anchor game's embed URL,
+    which meant a page with no embed of its own silently served a different
+    game under its own name. A page that cannot host its game should say so and
+    route the visitor somewhere real instead.
+  */
+  const embedSrc = game.embedUrl;
   const canEmbed = Boolean(embedSrc);
 
   return (

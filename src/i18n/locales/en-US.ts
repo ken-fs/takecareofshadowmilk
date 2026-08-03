@@ -174,23 +174,6 @@ export const enUS = {
       startGameCTA: 'So — which kind of caretaker are you?',
       ctaDescription: 'The full game is right here, no Scratch account and no download. Sweet and attentive, or completely unhinged: the only way to find out is to start.',
       startGameButton: 'Play now',
-      games: {
-        pouOnline: {
-          description: 'Classic virtual pet game',
-        },
-        myDogy: {
-          description: 'Cute dog virtual pet',
-        },
-        petSalon: {
-          description: 'Pet grooming salon game',
-        },
-        petSalon2: {
-          description: 'Pet grooming salon sequel',
-        },
-        myPetCare: {
-          description: 'Pet care salon',
-        },
-      },
     },
   },
 
@@ -341,10 +324,6 @@ export const enUS = {
     casualGames: 'Casual Games',
     virtualPet: 'Virtual Pet',
     popularGames: 'Popular Games',
-    pouOnline: 'Pou Online',
-    myDogy: 'My DOGY Virtual Pet',
-    petSalon: 'Pet Salon',
-    myPetCare: 'My Pet Care Salon',
     contactUs: 'Contact Us',
     copyrightNotice: 'Copyright Infringement Notice Procedure',
     termsOfUse: 'Terms of Use',

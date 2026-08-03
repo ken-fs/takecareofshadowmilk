@@ -74,34 +74,6 @@ export const GAME_DETAILS: Record<string, GameDetail> = {
     tagline: 'A soft, bakery-themed variant.',
     body: 'Butter Roll is a lower-stakes choice than the Beasts, and the variant plays accordingly. A reasonable first stop if the Shadow Milk original felt more unsettling than you wanted.',
   },
-  'pou-online': {
-    tagline: 'The alien blob that defined mobile pet games.',
-    body: 'Pou predates most of this collection and set the template a lot of it follows: feed, clean, play, sleep, watch a needs bar refill. It is worth playing before the Scratch variants because it makes obvious what they are all iterating on.',
-  },
-  'my-dogy': {
-    tagline: 'A dog to feed, train and clean up after.',
-    body: 'Straightforward pet care with a real animal rather than a cookie or a blob, which changes the register — the needs feel like obligations rather than a puzzle. Training gives it a small progression loop the pure care games lack.',
-  },
-  'pet-salon': {
-    tagline: 'Grooming as a queue-management problem.',
-    body: 'Less about one creature and more about throughput: pets arrive, each needs washing, cutting and styling, and the pressure comes from the queue rather than from a draining meter. It sits in simulation more than virtual pet.',
-  },
-  'pet-salon-2': {
-    tagline: 'The sequel, with more styling options.',
-    body: 'Same salon loop as the first game with a wider set of tools and outfits. Play the original first — the sequel assumes you already understand the wash-cut-style sequence and moves faster through it.',
-  },
-  'my-pet-care': {
-    tagline: 'A veterinary clinic instead of a bedroom.',
-    body: 'Patients arrive in varying states and each needs diagnosing before treating, which makes this the most decision-heavy game in the simulation category. The framing is care, but the mechanic is triage.',
-  },
-  'talking-tom': {
-    tagline: 'The cat that repeats what you say.',
-    body: 'Talking Tom made its name on the voice gimmick rather than the care loop, and that is still the draw — feeding and cleaning are there, but the reason to open it is to hear your own sentence played back wrong. The least demanding game in this collection.',
-  },
-  tamagotchi: {
-    tagline: 'Where the entire genre started.',
-    body: 'Hatch an egg, keep the creature alive, watch which adult form it grows into based on how you treated it. The 1996 keychain original is the reason every other game on this site has a hunger bar, and the consequence-of-neglect idea is stated more plainly here than in its descendants.',
-  },
   'take-care-of-your-own-truthless-recluse': {
     tagline: 'A withdrawn, secretive spin on the loop.',
     body: 'Themed around isolation rather than mischief, which is a genuinely different note from the rest of the Shadow Milk variants. The care mechanics are the collection standard.',
