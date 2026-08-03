@@ -20,66 +20,61 @@ export function Header() {
   ];
 
   return (
-    <header className="glass-effect sticky top-0 z-50 backdrop-blur-xl border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink/90 backdrop-blur-lg">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3 group">
-            <div className="text-4xl group-hover:animate-bounce-slow">🍪</div>
-            <div>
-              <p className="text-2xl font-bold text-gradient group-hover:scale-105 transition-transform">
-                {t('home.hero.title')}
-              </p>
-              <p className="text-xs text-gray-400 hidden sm:block">
-                {t('home.features.rating')} ⭐⭐⭐⭐⭐
-              </p>
-            </div>
+          <Link href="/" className="group flex items-center gap-3">
+            {/* A single clean diamond: rotate a square rather than tile the
+                conic pattern, which would clip at this size. */}
+            <span
+              className="block h-3 w-3 shrink-0 rotate-45 bg-ice transition-transform group-hover:rotate-[135deg]"
+              aria-hidden="true"
+            />
+            <span className="font-display text-base font-bold leading-none tracking-tight text-bone transition-colors group-hover:text-ice sm:text-lg">
+              {t('home.hero.title')}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1">
-            {navItems.map((item) => {
-              const Icon = item.icon;
-              const isPlay = item.href === '/game';
-              return (
+          <nav className="hidden items-center gap-1 lg:flex">
+            {navItems
+              .filter((item) => item.href !== '/game')
+              .map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={
-                    isPlay
-                      ? 'btn-primary text-sm px-5 py-2.5 flex items-center space-x-2'
-                      : 'flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-200 hover:text-purple-400 hover:bg-white/10 transition-all duration-300 group'
-                  }
+                  className="rounded-lg px-3 py-2 font-mono text-xs uppercase tracking-wider text-bone/60 transition-colors hover:bg-white/5 hover:text-bone"
                 >
-                  <Icon className="w-4 h-4 group-hover:scale-110 transition-transform" />
-                  <span>{item.label}</span>
+                  {item.label}
                 </Link>
-              );
-            })}
+              ))}
           </nav>
 
           {/* Right Side Actions */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center gap-2">
             {/* Search Button */}
             <button
               onClick={() => setSearchOpen(!searchOpen)}
-              className="hidden md:flex items-center space-x-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-200 hover:text-purple-400 hover:bg-white/10 transition-all duration-300"
-              aria-label="Search"
+              className="hidden rounded-lg p-2 text-bone/60 transition-colors hover:bg-white/5 hover:text-bone md:flex"
+              aria-label={t('common.search')}
             >
-              <Search className="w-4 h-4" />
-              <span className="hidden lg:inline">{t('common.search')}</span>
+              <Search className="h-4 w-4" />
             </button>
 
             {/* Language Switcher */}
             <LanguageSwitcher />
 
-            {/* Play CTA merged into nav as first item */}
+            <Link href="/game" className="btn-primary hidden lg:inline-flex">
+              {t('navigation.game')}
+            </Link>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-200 hover:text-purple-400 hover:bg-white/10 transition-all duration-300"
+              className="flex h-12 w-12 items-center justify-center rounded-lg text-bone/70 transition-colors hover:bg-white/5 hover:text-bone lg:hidden"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
                 <X className="w-6 h-6" />
@@ -96,44 +91,41 @@ export function Header() {
             <div className="relative max-w-2xl mx-auto">
               <input
                 type="text"
-                placeholder={t('common.search') + '...'}
-                className="w-full px-4 py-3 pl-12 bg-white/5 border border-white/10 rounded-xl text-gray-200 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all"
+                placeholder={t('common.search')}
+                className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 pl-12 text-sm text-bone placeholder-bone/35 transition-colors focus:border-ice/50 focus:outline-none"
                 autoFocus
               />
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-bone/40" />
             </div>
           </div>
         )}
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden pb-4 animate-fade-in">
-            <div className="space-y-2">
-              {navItems.map((item) => {
-                const Icon = item.icon;
-                const isPlay = item.href === '/game';
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={
-                      isPlay
-                        ? 'flex items-center justify-center space-x-2 btn-primary w-full'
-                        : 'flex items-center space-x-3 px-4 py-3 rounded-lg text-sm font-medium text-gray-200 hover:text-purple-400 hover:bg-white/10 transition-all duration-300'
-                    }
-                  >
-                    <Icon className="w-5 h-5" />
-                    <span>{item.label}</span>
-                  </Link>
-                );
-              })}
+          <div className="animate-fade-in pb-4 lg:hidden">
+            <div className="space-y-1">
+              {navItems
+                .filter((item) => item.href !== '/game')
+                .map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="flex items-center gap-3 rounded-lg px-3 py-3 font-mono text-xs uppercase tracking-wider text-bone/70 transition-colors hover:bg-white/5 hover:text-bone"
+                    >
+                      <Icon className="h-4 w-4" />
+                      <span>{item.label}</span>
+                    </Link>
+                  );
+                })}
               <Link
                 href="/game"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center space-x-2 btn-primary w-full mt-4"
+                className="btn-primary mt-3 w-full"
               >
-                <Gamepad2 className="w-5 h-5" />
+                <Gamepad2 className="h-4 w-4" />
                 <span>{t('home.hero.startGame')}</span>
               </Link>
             </div>

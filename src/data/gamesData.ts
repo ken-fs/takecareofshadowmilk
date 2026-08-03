@@ -9,7 +9,18 @@ export interface Game {
   slug: string;
   icon: string;
   description: string;
+  /**
+   * @deprecated Editorial placeholder, NOT a measured value. There is no review
+   * system on this site, so this must never be rendered to users or emitted as
+   * schema.org aggregateRating — doing so is a structured-data policy violation
+   * and risks a manual action. Kept only for internal ordering. Delete once
+   * `isFeatured`/`isTrending` fully replace it as sort keys.
+   */
   rating: number;
+  /**
+   * @deprecated Editorial placeholder, NOT a play counter. Nothing in the app
+   * counts plays. Do not display.
+   */
   plays: string;
   category: GameCategory[];
   isNew: boolean;
@@ -32,36 +43,57 @@ export type GameCategory =
   | 'puzzle'
   | 'action';
 
+/*
+  Each category carries its own prose. Category pages used to render nothing but
+  a heading and a grid — 54 words, all of it shared template — which is exactly
+  the shape Google treats as a thin doorway page. `intro` and `blurb` give each
+  page something only that page says.
+*/
 export const GAME_CATEGORIES = {
   'scratch-games': {
     id: 'scratch-games',
     name: 'Scratch Games',
     icon: '🎮',
     color: 'from-purple-500 to-pink-500',
+    blurb: 'Browser games built in MIT Scratch and playable without a download.',
+    intro:
+      'Scratch is the block-based programming environment from MIT, and the games here were all built in it by individual creators rather than studios. That shapes how they play: short loops, sprite art drawn by hand, and mechanics that do one thing well instead of ten things adequately. Take Care of Shadow Milk is the anchor of this collection — a care loop where four meters drain in real time and nothing in the interface tells you what the right move is. Because Scratch projects run on a web player, everything in this category starts in a couple of seconds with no install, no account, and no plugin.',
   },
   'simulation-games': {
     id: 'simulation-games',
     name: 'Simulation Games',
     icon: '🏠',
     color: 'from-blue-500 to-cyan-500',
+    blurb: 'Games about running a system: a salon, a clinic, a household.',
+    intro:
+      'Simulation games give you a system with rules and let you find the edges of it yourself. In this category that usually means managing something with several competing needs — a grooming salon with a queue, a veterinary clinic with patients in varying states, a household where every action costs time you could have spent elsewhere. The appeal is not winning but noticing: which lever matters most, what happens when you neglect one meter to protect another. These are all browser-based and free, so experimenting costs you nothing more than a reload.',
   },
   'casual-games': {
     id: 'casual-games',
     name: 'Casual Games',
     icon: '😊',
     color: 'from-green-500 to-emerald-500',
+    blurb: 'Short sessions, gentle difficulty, no tutorial required.',
+    intro:
+      'Casual games are built to be picked up in the gap between other things. Nothing in this category demands a tutorial or a commitment: controls are usually a single click or tap, sessions run a few minutes, and stopping mid-game costs you nothing. That does not make them shallow — the care games in particular reward paying attention over several sessions, because the meters keep telling you something about how you played. Everything here loads directly in the browser on desktop and mobile.',
   },
   'virtual-pet': {
     id: 'virtual-pet',
     name: 'Virtual Pet',
     icon: '🐾',
     color: 'from-orange-500 to-yellow-500',
+    blurb: 'Feed it, clean it, play with it — or find out what happens if you do not.',
+    intro:
+      'The virtual pet genre goes back to the Tamagotchi keychains of the late nineties, and the core idea has barely changed: a creature with needs that decay whether or not you are watching. What varies is the tone. Some games in this category are affectionate and forgiving; others, Take Care of Shadow Milk among them, hand you a character who is not entirely harmless and decline to tell you which way to play. Hunger tends to drain fastest in these games, which makes it the meter to watch when you are learning one.',
   },
   'shadow-milk-variants': {
     id: 'shadow-milk-variants',
     name: 'Shadow Milk Variants',
     icon: '🍼',
     color: 'from-fuchsia-500 to-purple-500',
+    blurb: 'Community remixes of the original Shadow Milk care game.',
+    intro:
+      'Scratch lets anyone remix a published project, and Take Care of Your Own Shadow Milk has been remixed a lot. This category collects those variants: the same care loop rebuilt around Pure Vanilla, Burning Spice, Hollyberry, Golden Cheese and a long tail of stranger choices, including one where Shadow Milk holds a beer bottle and one styled after his in-game sprite. Most keep the four-meter structure and change the art, the pacing, or the joke. If you have played the original and want the same rhythm with a different character, start here.',
   },
 } as const;
 

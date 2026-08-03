@@ -12,9 +12,9 @@ export function Inventory({ items, onUseItem, onRemoveItem }: InventoryProps) {
   
   const getItemTypeColor = (type: string) => {
     switch (type) {
-      case 'food': return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'toy': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
-      case 'tool': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
+      case 'food': return 'bg-meter/10 text-meter border-meter/30';
+      case 'toy': return 'bg-ice/10 text-ice border-ice/20';
+      case 'tool': return 'bg-ice/10 text-ice border-ice/30';
       case 'furniture': return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
       default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
     }
@@ -55,7 +55,7 @@ export function Inventory({ items, onUseItem, onRemoveItem }: InventoryProps) {
       <h3 className="text-xl font-bold text-gradient mb-6 flex items-center">
         <span className="text-3xl mr-3 animate-bounce-slow">🎒</span>
         {t('game.inventory.title')}
-        <span className="ml-auto text-sm text-purple-300 glass-effect px-3 py-1 rounded-full border border-purple-500/30">
+        <span className="ml-auto text-sm text-ice glass-effect px-3 py-1 rounded-full border border-ice/30">
           {items.length}
         </span>
       </h3>
@@ -71,7 +71,7 @@ export function Inventory({ items, onUseItem, onRemoveItem }: InventoryProps) {
           {items.map((item) => (
             <div
               key={item.id}
-              className="glass-effect rounded-xl p-4 border border-gray-700/50 hover:border-purple-500/30 hover:scale-105 transition-all duration-300"
+              className="glass-effect rounded-xl p-4 border border-gray-700/50 hover:border-ice/30 hover:scale-105 transition-all duration-300"
             >
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center space-x-4">
@@ -111,7 +111,7 @@ export function Inventory({ items, onUseItem, onRemoveItem }: InventoryProps) {
                       key={key}
                       className={`inline-block px-3 py-2 rounded-lg text-xs font-bold border ${
                         value && value > 0 
-                          ? 'bg-green-500/20 text-green-400 border-green-500/30' 
+                          ? 'bg-meter/10 text-meter border-meter/30' 
                           : 'bg-red-500/20 text-red-400 border-red-500/30'
                       }`}
                     >
@@ -130,8 +130,8 @@ export function Inventory({ items, onUseItem, onRemoveItem }: InventoryProps) {
       )}
 
       {/* 物品栏说明 */}
-      <div className="mt-6 p-4 glass-effect border border-purple-500/30 rounded-xl">
-        <p className="text-sm text-purple-300 leading-relaxed">
+      <div className="mt-6 p-4 glass-effect border border-ice/30 rounded-xl">
+        <p className="text-sm text-ice leading-relaxed">
           💡 {t('game.inventory.tip')}
         </p>
       </div>

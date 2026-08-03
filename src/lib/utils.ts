@@ -19,6 +19,15 @@ export function getRandomInt(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+/**
+ * Nearly every game in the catalogue is titled "Take Care of Your Own X", so in
+ * tight columns the shared prefix is what survives truncation and the character
+ * name — the only part that differs — is what gets cut. Drop it and keep X.
+ */
+export function shortGameName(name: string): string {
+  return name.replace(/^Take Care of (Your Own )?/i, '') || name
+}
+
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
   wait: number

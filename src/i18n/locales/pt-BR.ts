@@ -54,7 +54,7 @@ export const ptBR = {
   home: {
     hero: {
       title: 'Take Care of Shadow Milk',
-      subtitle: 'Bem-vindo ao takecareofshadowmilk.org, onde você pode jogar o popular jogo Scratch "Take Care of Your Own Shadow Milk" gratuitamente, direto no seu navegador. Sem downloads, sem registro - apenas clique para começar a jogar!',
+      subtitle: 'Alimente-o, dê banho nele, brinque com ele — ou não. A Fera da Trapaça está em suas mãos, e o jogo nunca diz qual caminho seguir. Aperte a bandeira verde para começar.',
       startGame: 'Começar Jogo Agora',
       learnMore: 'Saiba Mais',
       cookieName: 'Shadow Milk Cookie',
@@ -68,7 +68,6 @@ export const ptBR = {
     },
     features: {
       title: 'Recursos do Jogo',
-      rating: 'Avaliação 4.5',
       scratchGames: '🎮 Jogos Scratch',
       simulationGames: '🏠 Jogos de Simulação',
       casualGames: '😊 Jogos Casuais',

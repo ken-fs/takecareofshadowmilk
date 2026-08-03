@@ -171,3 +171,6 @@ jspm_packages/
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.* 
+# SEO audit artifacts (2026-08-03) — one-off Playwright captures, not build inputs
+screenshots/
+analyze_visual.py

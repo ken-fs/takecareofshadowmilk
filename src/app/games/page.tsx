@@ -41,11 +41,7 @@ export default function GamesPage() {
               <Link key={g.id} href={`/game/${g.slug}`} className="card p-5 hover:scale-105 transition-all duration-300 group">
                 <div className="text-5xl mb-3 group-hover:animate-bounce-slow" aria-hidden>{g.icon}</div>
                 <h3 className="font-bold text-gray-200 mb-2 text-lg">{g.name}</h3>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <span>⭐ {g.rating}</span>
-                  <span>•</span>
-                  <span>{g.plays} {t('sidebar.plays')}</span>
-                </div>
+                <p className="text-sm text-gray-400 line-clamp-2">{g.description}</p>
               </Link>
             ))}
           </div>
@@ -59,11 +55,7 @@ export default function GamesPage() {
               <Link key={g.id} href={`/game/${g.slug}`} className="card p-5 hover:scale-105 transition-all duration-300 group">
                 <div className="text-5xl mb-3 group-hover:animate-bounce-slow" aria-hidden>{g.icon}</div>
                 <h3 className="font-bold text-gray-200 mb-2 text-lg">{g.name}</h3>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
-                  <span>⭐ {g.rating}</span>
-                  <span>•</span>
-                  <span>{g.plays} {t('sidebar.plays')}</span>
-                </div>
+                <p className="text-sm text-gray-400 line-clamp-2">{g.description}</p>
               </Link>
             ))}
           </div>

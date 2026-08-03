@@ -51,7 +51,7 @@ export function GameInterface({ currentRoom, onUseItem }: GameInterfaceProps) {
       </div>
 
       {/* 房间背景 */}
-      <div className={`relative h-80 rounded-2xl mb-8 glass-effect border-2 border-purple-500/30 overflow-hidden`}>
+      <div className={`relative h-80 rounded-2xl mb-8 glass-effect border-2 border-ice/30 overflow-hidden`}>
         {/* Shadow Milk 角色 */}
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-9xl animate-bounce-slow">
@@ -86,23 +86,23 @@ export function GameInterface({ currentRoom, onUseItem }: GameInterfaceProps) {
       </div>
 
       {/* 游戏说明 */}
-      <div className="glass-effect p-6 border border-blue-500/30 rounded-xl">
+      <div className="glass-effect p-6 border border-ice/20 rounded-xl">
         <h4 className="font-bold text-blue-300 mb-4 text-lg">{t('game.interface.instructions.title')}</h4>
         <ul className="text-sm text-gray-300 space-y-2 leading-relaxed">
           <li className="flex items-center">
-            <span className="text-blue-400 mr-2">•</span>
+            <span className="text-ice mr-2">•</span>
             {t('game.interface.instructions.clickItems')}
           </li>
           <li className="flex items-center">
-            <span className="text-blue-400 mr-2">•</span>
+            <span className="text-ice mr-2">•</span>
             {t('game.interface.instructions.itemEffects')}
           </li>
           <li className="flex items-center">
-            <span className="text-blue-400 mr-2">•</span>
+            <span className="text-ice mr-2">•</span>
             {t('game.interface.instructions.dragToTrash')}
           </li>
           <li className="flex items-center">
-            <span className="text-blue-400 mr-2">•</span>
+            <span className="text-ice mr-2">•</span>
             {t('game.interface.instructions.switchRooms')}
           </li>
         </ul>

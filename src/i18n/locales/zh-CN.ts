@@ -54,7 +54,7 @@ export const zhCN = {
   home: {
     hero: {
       title: 'Take Care of Shadow Milk',
-      subtitle: '欢迎来到 takecareofshadowmilk.org，在这里你可以免费玩流行的Scratch游戏"Take Care of Your Own Shadow Milk"，就在你的浏览器中。无需下载，无需注册——只需点击即可开始游戏！',
+      subtitle: '喂他、给他洗澡、陪他玩——或者什么都不做。欺诈之兽就在你手里，而游戏从不告诉你该往哪边走。按下绿旗开始。',
       startGame: '立即开始游戏',
       learnMore: '了解更多',
       cookieName: 'Shadow Milk Cookie',
@@ -68,7 +68,6 @@ export const zhCN = {
     },
     features: {
       title: '游戏特色',
-      rating: '4.5 评分',
       scratchGames: '🎮 Scratch游戏',
       simulationGames: '🏠 模拟游戏',
       casualGames: '😊 休闲游戏',

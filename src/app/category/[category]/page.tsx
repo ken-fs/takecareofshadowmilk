@@ -37,16 +37,23 @@ export default function CategoryPage() {
           <h1 className="text-3xl md:text-4xl font-bold text-gradient">{t(`categories.${category.id}`)}</h1>
         </div>
 
+        {/* Category-specific prose. Without this the page was a heading and a
+            grid — nothing a search engine or reader could tell apart from the
+            other four category pages. */}
+        <div className="mb-10 max-w-3xl space-y-4">
+          <p className="text-lg text-gray-300">{category.blurb}</p>
+          <p className="leading-relaxed text-gray-400">{category.intro}</p>
+          <p className="text-sm text-gray-500">
+            {games.length} {games.length === 1 ? 'game' : 'games'} in this category.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {games.map((g) => (
             <Link key={g.id} href={`/game/${g.slug}`} className="card p-5 hover:scale-105 transition-all duration-300 group">
               <div className="text-5xl mb-3 group-hover:animate-bounce-slow" aria-hidden>{g.icon}</div>
               <h3 className="font-bold text-gray-200 mb-2 text-lg">{g.name}</h3>
-              <div className="flex items-center gap-2 text-sm text-gray-400">
-                <span>⭐ {g.rating}</span>
-                <span>•</span>
-                <span>{g.plays} {t('sidebar.plays')}</span>
-              </div>
+              <p className="text-sm text-gray-400 line-clamp-2">{g.description}</p>
             </Link>
           ))}
         </div>

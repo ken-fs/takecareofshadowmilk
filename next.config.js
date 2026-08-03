@@ -58,6 +58,30 @@ const nextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on',
           },
+          {
+            // The game is a cross-origin iframe, so frame-src has to allow it.
+            // 'unsafe-inline'/'unsafe-eval' are required by Next's inline
+            // bootstrap and the Scratch player; tighten with nonces only if you
+            // are prepared to test the embed afterwards.
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: blob: https:",
+              "font-src 'self' data:",
+              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms",
+              "frame-src 'self' https://takecareofshadowmilk.org",
+              "base-uri 'self'",
+              "form-action 'self'",
+              "object-src 'none'",
+              'upgrade-insecure-requests',
+            ].join('; '),
+          },
+          {
+            key: 'Permissions-Policy',
+            value: 'geolocation=(), microphone=(), camera=(), payment=(), usb=()',
+          },
         ],
       },
       {

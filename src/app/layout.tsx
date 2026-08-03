@@ -1,11 +1,31 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Fraunces, Nunito, DM_Mono } from 'next/font/google';
 import Script from 'next/script';
 import './globals.css';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Header } from '@/components/Header';
+import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript } from '@/lib/seo';
 
-const inter = Inter({ subsets: ['latin'] });
+// Display: carnival-poster serif. Body: rounded and plush. Mono: game telemetry.
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  axes: ['SOFT', 'WONK'],
+  display: 'swap',
+  variable: '--font-display',
+});
+
+const nunito = Nunito({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-body',
+});
+
+const dmMono = DM_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-mono',
+});
 
 export const metadata: Metadata = {
   title: {
@@ -34,39 +54,28 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('http://takecareofshadowmilk.site'),
+  metadataBase: new URL(SITE_URL),
+  /*
+    No `languages` map here. The six locale paths it used to declare (/en, /zh,
+    /de, /fr, /es, /pt) all 404 — language switching is client-side React state
+    with no per-locale URL. Declaring hreflang targets that 404 is worse than
+    declaring none. Restore this only alongside real localised routes.
+  */
   alternates: {
-    canonical: '/',
-    languages: {
-      'en-US': '/en',
-      'zh-CN': '/zh',
-      'de-DE': '/de',
-      'fr-FR': '/fr',
-      'es-ES': '/es',
-      'pt-BR': '/pt',
-    },
+    canonical: absoluteUrl('/'),
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'http://takecareofshadowmilk.site',
+    url: absoluteUrl('/'),
     title: 'Take Care of Shadow Milk - Free Online Virtual Pet Game',
     description: 'Play Take Care of Your Own Shadow Milk game online for free! Take care of the adorable character from Cookie Run: Kingdom.',
-    siteName: 'Take Care of Shadow Milk',
-    images: [
-      {
-        url: '/og-image.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Take Care of Shadow Milk Game Preview',
-      },
-    ],
+    siteName: SITE_NAME,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Take Care of Shadow Milk - Free Online Virtual Pet Game',
     description: 'Play Take Care of Your Own Shadow Milk game online for free! Take care of the adorable character from Cookie Run: Kingdom.',
-    images: ['/og-image.jpg'],
     creator: '@takecareofshadowmilk',
     site: '@takecareofshadowmilk',
   },
@@ -81,16 +90,17 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-    yandex: 'your-yandex-verification-code',
-    yahoo: 'your-yahoo-verification-code',
-  },
+  /*
+    `verification` is omitted deliberately. It previously shipped the literal
+    strings 'your-google-verification-code' etc. straight into the HTML. Add it
+    back only with real tokens, e.g.
+      verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+  */
   category: 'games',
   classification: 'Virtual Pet Game',
   other: {
-    'msapplication-TileColor': '#7c3aed',
-    'theme-color': '#7c3aed',
+    'msapplication-TileColor': '#0b1026',
+    'theme-color': '#0b1026',
   },
   icons: {
     icon: [
@@ -103,16 +113,58 @@ export const metadata: Metadata = {
   },
 };
 
+/*
+  Site-level graph, rendered into the server HTML. No aggregateRating anywhere:
+  the site has no review collection mechanism, so any rating here would be
+  fabricated — which is a structured-data policy violation, not just a fib.
+*/
+const siteJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
+      url: absoluteUrl('/'),
+      name: SITE_NAME,
+      description:
+        'Play Take Care of Your Own Shadow Milk online for free — a browser-based virtual pet game built in Scratch.',
+      inLanguage: 'en-US',
+      publisher: { '@id': `${SITE_URL}/#organization` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE_URL}/#organization`,
+      name: SITE_NAME,
+      url: absoluteUrl('/'),
+    },
+  ],
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        {/* Microsoft Clarity */}
-        <Script id="clarity" strategy="beforeInteractive">
+    <html lang="en" className={`${fraunces.variable} ${nunito.variable} ${dmMono.variable}`}>
+      <head>
+        {/* The three third-party origins this page always reaches. Warming the
+            connections costs nothing and takes DNS + TLS off the critical path. */}
+        <link rel="preconnect" href="https://takecareofshadowmilk.org" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.clarity.ms" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={jsonLdScript(siteJsonLd)}
+        />
+      </head>
+      <body>
+        {/*
+          Clarity runs afterInteractive, not beforeInteractive. As
+          beforeInteractive its bootstrap landed at the very top of <body> and
+          executed ahead of first paint; analytics never needs to block render.
+        */}
+        <Script id="clarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};

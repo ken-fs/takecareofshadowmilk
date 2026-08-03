@@ -9,17 +9,19 @@ export function GameStats({ stats }: GameStatsProps) {
   const { t } = useLanguage();
   
   const getStatColor = (value: number) => {
-    if (value >= 80) return 'text-green-400';
+    if (value >= 80) return 'text-meter';
     if (value >= 50) return 'text-yellow-400';
     if (value >= 20) return 'text-orange-400';
     return 'text-red-400';
   };
 
+  // Severity is real information, so these stay colour-coded — flat fills to
+  // match the rest of the system.
   const getStatBarColor = (value: number) => {
-    if (value >= 80) return 'bg-gradient-to-r from-green-500 to-green-400';
-    if (value >= 50) return 'bg-gradient-to-r from-yellow-500 to-yellow-400';
-    if (value >= 20) return 'bg-gradient-to-r from-orange-500 to-orange-400';
-    return 'bg-gradient-to-r from-red-500 to-red-400';
+    if (value >= 80) return 'bg-meter';
+    if (value >= 50) return 'bg-yellow-400';
+    if (value >= 20) return 'bg-orange-400';
+    return 'bg-red-400';
   };
 
   return (
@@ -96,7 +98,7 @@ export function GameStats({ stats }: GameStatsProps) {
       </div>
 
       {/* 状态提示 */}
-      <div className="mt-6 p-4 glass-effect border border-blue-500/30 rounded-xl">
+      <div className="mt-6 p-4 glass-effect border border-ice/20 rounded-xl">
         <p className="text-sm text-blue-300 leading-relaxed">
           💡 {t('game.stats.tip')}
         </p>

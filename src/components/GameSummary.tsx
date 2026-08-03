@@ -1,113 +1,64 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 
+/*
+  Two blocks. The spec table is genuinely tabular data about the game, so it
+  stays a definition list. The how-to-play steps are genuinely ordered — you
+  pick a room before you drag an item into it — so these get numbers; nothing
+  else on the page does.
+*/
+
+const SPEC_ROWS = [
+  { label: 'home.summary.gameType', value: 'home.summary.gameTypeValue' },
+  { label: 'home.summary.creator', value: 'home.summary.creatorValue' },
+  { label: 'home.summary.mainCharacter', value: 'home.summary.mainCharacterValue' },
+  { label: 'home.summary.gameplay', value: 'home.summary.gameplayValue' },
+  { label: 'home.summary.statusMetrics', value: 'home.summary.statusMetricsValue' },
+  { label: 'home.summary.whyTrendy', value: 'home.summary.whyTrendyValue' },
+];
+
 export function GameSummary() {
   const { t } = useLanguage();
-  
+
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gradient mb-6">
-            {t('home.summary.title')}
-          </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
-            {t('home.summary.description')}
-          </p>
+    <section id="about-game" className="border-t border-white/10 py-20">
+      <div className="grid items-start gap-14 lg:grid-cols-[1.35fr_1fr] lg:gap-16">
+        <div>
+          <p className="eyebrow">{t('home.summary.eyebrow')}</p>
+          <h2 className="display-lg mt-4">{t('home.summary.title')}</h2>
+          <p className="prose-body mt-5">{t('home.summary.description')}</p>
+
+          <dl className="mt-10 border-t border-white/10">
+            {SPEC_ROWS.map((row) => (
+              <div
+                key={row.label}
+                className="grid grid-cols-1 gap-1 border-b border-white/10 py-4 sm:grid-cols-[9rem_1fr] sm:gap-6"
+              >
+                <dt className="eyebrow pt-0.5 text-[0.625rem]">{t(row.label)}</dt>
+                <dd className="text-sm leading-relaxed text-bone/80">{t(row.value)}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        {/* 游戏特色表格 */}
-        <div className="card mb-16">
-          <h3 className="text-3xl font-bold text-gradient mb-8 text-center">
-            {t('home.summary.featuresTable.title')}
-          </h3>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-700/50">
-                  <th className="text-left py-4 px-6 font-bold text-purple-300">{t('home.summary.featuresTable.feature')}</th>
-                  <th className="text-left py-4 px-6 font-bold text-purple-300">{t('home.summary.featuresTable.details')}</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-700/50">
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.gameType')}</td>
-                  <td className="py-4 px-6 text-gray-300">{t('home.summary.gameTypeValue')}</td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.creator')}</td>
-                  <td className="py-4 px-6 text-gray-300"><strong className="text-purple-400">{t('home.summary.creatorValue')}</strong></td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.mainCharacter')}</td>
-                  <td className="py-4 px-6 text-gray-300">
-                    {t('home.summary.mainCharacterValue')}
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.gameplay')}</td>
-                  <td className="py-4 px-6 text-gray-300">
-                    {t('home.summary.gameplayValue')}
-                  </td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.statusMetrics')}</td>
-                  <td className="py-4 px-6 text-gray-300">{t('home.summary.statusMetricsValue')}</td>
-                </tr>
-                <tr className="hover:bg-gray-800/50 transition-colors duration-300">
-                  <td className="py-4 px-6 font-semibold text-gray-200">{t('home.summary.whyTrendy')}</td>
-                  <td className="py-4 px-6 text-gray-300">{t('home.summary.whyTrendyValue')}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <div id="how-to-play" className="lg:sticky lg:top-24">
+          <div className="card path-care">
+            <p className="eyebrow">{t('home.howToPlay.eyebrow')}</p>
+            <h3 className="display-md mt-3">{t('home.howToPlay.title')}</h3>
 
-        {/* 游戏玩法概述 */}
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h3 className="text-3xl font-bold text-gradient mb-6">
-              {t('home.summary.gameplayOverview.title')}
-            </h3>
-            <p className="text-gray-300 mb-8 text-lg leading-relaxed">
-              {t('home.summary.gameplayOverview.description')}
-            </p>
-            <ul className="space-y-4 text-gray-300">
-              <li className="flex items-start">
-                <span className="text-green-400 mr-3 text-xl">✓</span>
-                <span className="text-lg">{t('home.summary.gameplayOverview.point1')}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-400 mr-3 text-xl">✓</span>
-                <span className="text-lg">{t('home.summary.gameplayOverview.point2')}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-400 mr-3 text-xl">✓</span>
-                <span className="text-lg">{t('home.summary.gameplayOverview.point3')}</span>
-              </li>
-            </ul>
-          </div>
-          
-          <div className="glass-effect p-10 border border-purple-500/30">
-            <h4 className="text-2xl font-bold text-gradient mb-6">{t('home.howToPlay.title')}</h4>
-            <ul className="space-y-4 text-gray-300">
-              <li className="flex items-start">
-                <span className="text-blue-400 mr-3 text-2xl">🏠</span>
-                <span className="text-lg">{t('home.howToPlay.steps.0')}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-400 mr-3 text-2xl">🎯</span>
-                <span className="text-lg">{t('home.howToPlay.steps.1')}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-400 mr-3 text-2xl">📊</span>
-                <span className="text-lg">{t('home.howToPlay.steps.2')}</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-blue-400 mr-3 text-2xl">🗑️</span>
-                <span className="text-lg">{t('home.howToPlay.steps.3')}</span>
-              </li>
-            </ul>
-            <p className="text-gray-300 mt-6 font-semibold text-lg">
+            <ol className="mt-8 space-y-6">
+              {[0, 1, 2, 3].map((i) => (
+                <li key={i} className="flex gap-4">
+                  <span className="mt-0.5 shrink-0 font-mono text-xs text-ice" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <p className="text-sm leading-relaxed text-bone/80">
+                    {t(`home.howToPlay.steps.${i}`)}
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <p className="mt-8 border-t border-white/10 pt-6 font-display text-lg text-bone">
               {t('home.howToPlay.conclusion')}
             </p>
           </div>
@@ -115,4 +66,4 @@ export function GameSummary() {
       </div>
     </section>
   );
-} 
+}

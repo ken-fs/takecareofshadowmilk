@@ -2,80 +2,139 @@ import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIframeGame } from '@/hooks/useGameState';
 
+/*
+  The signature element: the game sits inside a harlequin proscenium — a
+  lozenge-trimmed stage cabinet whose base carries the four care meters from
+  the real Scratch HUD. Shadow Milk Cookie is the Beast of Deceit, a jester;
+  putting him on a stage is the most characteristic frame available, and it
+  gets the playable game high and large instead of nested three boxes deep.
+*/
+
+/*
+  Bars show each meter's real drain rate, normalised against the fastest, so
+  the base doubles as advice: hunger empties five times faster than health, so
+  it's the one to watch. Invented "current values" would have been decoration
+  pretending to be telemetry.
+*/
+const METERS = [
+  { key: 'hunger', rate: 0.5 },
+  { key: 'energy', rate: 0.3 },
+  { key: 'hygiene', rate: 0.2 },
+  { key: 'health', rate: 0.1 },
+] as const;
+
+const FASTEST_RATE = 0.5;
+
 export const GameHero: React.FC = () => {
   const { t } = useLanguage();
-  const { isGameLoaded, isFullscreen, handleGameLoad, handleFullscreen, iframeRef } = useIframeGame();
+  const { isGameLoaded, isFullscreen, handleGameLoad, handleFullscreen, iframeRef } =
+    useIframeGame();
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* 背景装饰 */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.05&quot;%3E%3Ccircle cx=&quot;30&quot; cy=&quot;30&quot; r=&quot;2&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+    <section className="pb-16 pt-8">
+      <div className="mb-8 max-w-2xl">
+        <p className="eyebrow animate-fade-in">{t('home.hero.eyebrow')}</p>
+        <h1 className="display-xl animate-fade-in mt-4">
+          {t('home.hero.titleLead')}{' '}
+          <em className="not-italic text-ice">{t('home.hero.titleAccent')}</em>
+        </h1>
+        <p className="prose-body animate-fade-in-delay mt-5 text-lg">
+          {t('home.hero.subtitle')}
+        </p>
       </div>
 
-      {/* 主要内容 */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h1 className="text-6xl md:text-8xl font-bold text-gradient mb-6 animate-fade-in">
-            {t('home.hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed animate-fade-in-delay">
-            {t('home.hero.subtitle')}
-          </p>
-        </div>
+      {/* Proscenium */}
+      <div className="animate-fade-in-scale">
+        <div className="overflow-hidden rounded-2xl border border-white/10 bg-ink-raised">
+          {/* Valance: lozenge trim reading as a jester's motley */}
+          <div className="flex items-center gap-4 border-b border-white/10 px-4 py-3">
+            <div
+              className="lozenge h-4 flex-1 rounded-sm opacity-45"
+              style={{ ['--lozenge-color' as string]: '#1e7fe0' }}
+              aria-hidden="true"
+            />
+            <p className="eyebrow shrink-0 text-[0.625rem]">{t('home.hero.stageLabel')}</p>
+            <div
+              className="lozenge h-4 flex-1 rounded-sm opacity-45"
+              style={{ ['--lozenge-color' as string]: '#1e7fe0' }}
+              aria-hidden="true"
+            />
+          </div>
 
-        <div className="relative animate-fade-in-scale">
-          <div className="glass-effect p-12 max-w-5xl mx-auto border border-purple-500/30">
-            <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 rounded-2xl p-8 backdrop-blur-sm">
-              {/* 游戏iframe区域 */}
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden border-2 border-purple-400/50 shadow-2xl">
-                <iframe
-                  ref={iframeRef}
-                  src="https://takecareofshadowmilk.org/take-care-of-shadow-milk.embed"
-                  className="w-full h-full"
-                  title={t('home.hero.gameTitle')}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  loading="lazy"
-                  onLoad={handleGameLoad}
-                />
-                {/* 加载状态遮罩 */}
-                {!isGameLoaded && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-blue-900/20 flex items-center justify-center backdrop-blur-sm">
-                    <div className="text-center">
-                      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400 mx-auto mb-4"></div>
-                      <p className="text-purple-200 text-sm">{t('home.hero.gameLoading')}</p>
-                    </div>
+          {/* Stage */}
+          <div className="p-3 sm:p-4">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-ink-deep sm:aspect-video">
+              <iframe
+                ref={iframeRef}
+                src="https://takecareofshadowmilk.org/take-care-of-shadow-milk.embed"
+                className="h-full w-full"
+                title={t('home.hero.gameTitle')}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                onLoad={handleGameLoad}
+              />
+              {!isGameLoaded && (
+                <div className="absolute inset-0 flex items-center justify-center bg-ink-deep">
+                  <div className="text-center">
+                    <div
+                      className="lozenge mx-auto mb-4 h-6 w-24 rounded-sm opacity-60"
+                      style={{ ['--lozenge-color' as string]: '#8fe9ff' }}
+                      aria-hidden="true"
+                    />
+                    <p className="eyebrow">{t('home.hero.gameLoading')}</p>
                   </div>
-                )}
-              </div>
-              
-              {/* 游戏控制按钮 */}
-              <div className="flex justify-center mt-6 space-x-4">
-                <button 
-                  className="px-6 py-3 bg-gradient-to-r from-orange-500 to-purple-600 hover:from-orange-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  disabled={!isGameLoaded}
-                >
-                  <span>{t('home.hero.startGameButton')}</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </button>
-                <button 
-                  className="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg flex items-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                  onClick={handleFullscreen}
-                  disabled={!isGameLoaded}
-                >
-                  <span>{isFullscreen ? t('home.hero.exitFullscreenButton') : t('home.hero.fullscreenButton')}</span>
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12z" />
-                  </svg>
-                </button>
-              </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Base: the four meters, plus controls */}
+          <div className="flex flex-col gap-5 border-t border-white/10 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
+            <div className="grid flex-1 grid-cols-2 gap-x-6 gap-y-3 sm:grid-cols-4">
+              {METERS.map((meter) => (
+                <div key={meter.key}>
+                  <div className="mb-1.5 flex items-baseline justify-between gap-2">
+                    <span className="eyebrow text-[0.625rem]">
+                      {t(`game.stats.${meter.key}`)}
+                    </span>
+                    <span className="font-mono text-[0.6875rem] text-bone/45">
+                      −{meter.rate}%/s
+                    </span>
+                  </div>
+                  <div
+                    className="gauge-track"
+                    role="img"
+                    aria-label={`${t(`game.stats.${meter.key}`)}: ${meter.rate}% per second`}
+                  >
+                    <div
+                      className="gauge-fill"
+                      style={{ width: `${(meter.rate / FASTEST_RATE) * 100}%` }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex shrink-0 gap-2">
+              <a href="#how-to-play" className="btn-secondary">
+                {t('home.hero.learnMore')}
+              </a>
+              <button
+                type="button"
+                className="btn-primary"
+                onClick={handleFullscreen}
+                disabled={!isGameLoaded}
+              >
+                {isFullscreen
+                  ? t('home.hero.exitFullscreenButton')
+                  : t('home.hero.fullscreenButton')}
+              </button>
             </div>
           </div>
         </div>
+
+        <p className="eyebrow mt-3 text-[0.625rem]">{t('home.hero.meterNote')}</p>
       </div>
     </section>
   );
-}; 
+};

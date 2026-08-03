@@ -2,81 +2,269 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Palette and type are pulled from the game's own sprites: Shadow Milk Cookie's
+  navy cloak (ink), his ice-blue face, the diamond on his chest, his bone-white
+  teeth. Candy pink carries the mischief half of the character. The Scratch
+  HUD's acid green is reserved for the meter gauges and used nowhere else.
+*/
 @layer base {
-  body {
-    @apply bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900 text-white min-h-screen;
-    background-attachment: fixed;
+  :root {
+    --ink: #0b1026;
+    --ink-deep: #060a18;
+    --ink-raised: #141b3a;
+    --ice: #8fe9ff;
+    --diamond: #1e7fe0;
+    --bone: #f4f1e4;
+    --blush: #ff6e9c;
+    --meter: #b6f34a;
+    --hairline: rgba(244, 241, 228, 0.14);
   }
-  
+
+  body {
+    background-color: var(--ink);
+    color: var(--bone);
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Fraunces with WONK on: the curves go slightly wrong, which is the point. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, serif;
+    font-variation-settings: 'SOFT' 30, 'WONK' 1;
+    letter-spacing: -0.022em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ice);
+    outline-offset: 3px;
+    border-radius: 2px;
   }
 }
 
 @layer components {
-  .btn-primary {
-    @apply bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+  /* ---- Type roles ---------------------------------------------------- */
+
+  /* An eyebrow states a fact about the content below it, in the mono face. */
+  .eyebrow {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    /* 0.62 keeps these 11px labels above 4.5:1 on --ink with margin to spare. */
+    color: rgba(244, 241, 228, 0.62);
   }
-  
-  .btn-secondary {
-    @apply bg-gradient-to-r from-gray-700 to-gray-600 hover:from-gray-600 hover:to-gray-500 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg;
+
+  .display-xl {
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    font-weight: 800;
   }
-  
-  .card {
-    @apply bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-2xl shadow-2xl border border-gray-700/50 p-6 backdrop-saturate-150;
+
+  .display-lg {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
   }
-  
-  .game-container {
-    @apply max-w-6xl mx-auto p-6;
+
+  .display-md {
+    font-size: clamp(1.375rem, 2.2vw, 1.875rem);
+    font-weight: 700;
   }
-  
-  .hero-gradient {
-    @apply bg-gradient-to-br from-purple-900/40 via-blue-900/40 to-indigo-900/40;
-  }
-  
-  .glass-effect {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl;
-  }
-  
+
+  /* Retained name — 34 call sites across the site. Now a solid bone, so the
+     old purple-to-blue gradient is gone everywhere at once. */
   .text-gradient {
-    @apply bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent;
+    color: var(--bone);
   }
-  
+
+  .text-ice {
+    color: var(--ice);
+  }
+
+  .prose-body {
+    color: rgba(244, 241, 228, 0.7);
+    line-height: 1.65;
+  }
+
+  /* ---- Surfaces ------------------------------------------------------ */
+
+  .card {
+    background-color: var(--ink-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* Retained name so other routes keep working; no longer frosted glass. */
+  .glass-effect {
+    background-color: var(--ink-raised);
+    border: 1px solid var(--hairline);
+    border-radius: 1rem;
+  }
+
+  .well {
+    background-color: var(--ink-deep);
+    border: 1px solid var(--hairline);
+    border-radius: 0.75rem;
+  }
+
+  .hero-gradient {
+    background-color: var(--ink-raised);
+  }
+
+  .game-container {
+    @apply mx-auto max-w-6xl p-6;
+  }
+
+  /* The two ways to play the game, as two colour paths. */
+  .path-care {
+    border-top: 2px solid var(--ice);
+  }
+
+  .path-chaos {
+    border-top: 2px solid var(--blush);
+  }
+
   .accent-border {
-    @apply border-l-4 border-purple-500 pl-4;
+    border-left: 2px solid var(--ice);
+    padding-left: 1rem;
+  }
+
+  /* ---- Harlequin lozenge --------------------------------------------- */
+
+  /* A conic gradient quartered at the diagonals paints one solid diamond per
+     tile — a jester's motley, and the rhombus on Shadow Milk's chest. */
+  .lozenge {
+    --lz: var(--lozenge-color, var(--diamond));
+    --lz-size: 18px;
+    background-image: conic-gradient(
+      from 45deg,
+      var(--lz) 0deg 90deg,
+      transparent 90deg 180deg,
+      var(--lz) 180deg 270deg,
+      transparent 270deg 360deg
+    );
+    background-size: var(--lz-size) var(--lz-size);
+    background-position: center;
+  }
+
+  /* ---- Controls ------------------------------------------------------ */
+
+  /* min-height 48px: the WCAG 2.2 target-size floor. These were measuring
+     ~46px, which is close enough to look fine and still fail an audit. */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    background-color: var(--ice);
+    color: var(--ink-deep);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.18s ease, transform 0.18s ease;
+  }
+
+  .btn-primary:hover {
+    background-color: #b6f2ff;
+    transform: translateY(-1px);
+  }
+
+  .btn-primary:disabled {
+    opacity: 0.4;
+    transform: none;
+    cursor: not-allowed;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    background-color: transparent;
+    color: var(--bone);
+    border: 1px solid var(--hairline);
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    transition: border-color 0.18s ease, background-color 0.18s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ice);
+    background-color: rgba(143, 233, 255, 0.08);
+  }
+
+  .btn-secondary:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* ---- Meter gauges -------------------------------------------------- */
+
+  /* Quotes the Scratch HUD: four meters, acid green. Legend, not live data. */
+  .gauge-track {
+    height: 5px;
+    border-radius: 999px;
+    background-color: rgba(244, 241, 228, 0.1);
+    overflow: hidden;
+  }
+
+  .gauge-fill {
+    height: 100%;
+    border-radius: 999px;
+    background-color: var(--meter);
   }
 }
 
 @layer utilities {
   .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.6s ease-out both;
   }
-  
+
   .animate-fade-in-delay {
-    animation: fadeIn 0.8s ease-out 0.2s both;
+    animation: fadeIn 0.6s ease-out 0.12s both;
   }
-  
+
   .animate-fade-in-scale {
-    animation: fadeInScale 0.8s ease-out 0.4s both;
+    animation: fadeIn 0.6s ease-out 0.24s both;
   }
-  
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-  
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-  
+
+  /* These three names survive in other routes; kept subtle deliberately. */
+  .animate-float,
+  .animate-pulse-slow,
   .animate-bounce-slow {
-    animation: bounce 2s infinite;
+    animation: none;
+  }
+
+  .marquee-track {
+    animation: marquee 26s linear infinite;
   }
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -84,49 +272,53 @@
   }
 }
 
-@keyframes fadeInScale {
+@keyframes marquee {
   from {
-    opacity: 0;
-    transform: scale(0.9);
+    transform: translateX(0);
   }
   to {
-    opacity: 1;
-    transform: scale(1);
+    transform: translateX(-50%);
   }
 }
 
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
-  50% {
-    transform: translateY(-10px);
+
+  .marquee-track {
+    animation: none;
   }
 }
 
-/* 自定义滚动条 */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-gray-800;
+  background-color: var(--ink-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gradient-to-b from-purple-500 to-blue-500 rounded-full;
+  background-color: #2b3560;
+  border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gradient-to-b from-purple-600 to-blue-600;
+  background-color: var(--diamond);
 }
 
-/* 选择文本样式 */
 ::selection {
-  @apply bg-purple-500/30 text-white;
+  background-color: var(--ice);
+  color: var(--ink-deep);
 }
 
-/* 焦点样式 */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900;
-} 
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ice);
+  outline-offset: 3px;
+}
