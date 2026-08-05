@@ -106,7 +106,11 @@ const nextConfig = {
               "style-src 'self' 'unsafe-inline'",
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
-              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://*.googlesyndication.com https://*.google.com https://*.adtrafficquality.google https://*.doubleclick.net",
+              // csi.gstatic.com is AdSense's client-side instrumentation beacon.
+              // It was missing, so it was being refused on every page carrying an
+              // ad — found by loading all 24 game pages in a headless browser and
+              // reading the CSP violations, which is the only way these surface.
+              "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://*.googlesyndication.com https://*.google.com https://*.gstatic.com https://*.adtrafficquality.google https://*.doubleclick.net",
               // Games are framed from scratch.mit.edu, the platform they are
               // actually published on. The previous value allowed
               // takecareofshadowmilk.org and .com — domains we do not own, which

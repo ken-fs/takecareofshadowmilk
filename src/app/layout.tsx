@@ -148,10 +148,15 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${nunito.variable} ${dmMono.variable}`}>
       <head>
-        {/* The three third-party origins this page always reaches. Warming the
-            connections costs nothing and takes DNS + TLS off the critical path. */}
-        <link rel="preconnect" href="https://takecareofshadowmilk.org" />
-        <link rel="preconnect" href="https://takecareofshadowmilk.com" />
+        {/* Third-party origins this page always reaches. Warming the connection
+            costs nothing and takes DNS + TLS off the critical path.
+
+            scratch.mit.edu is preconnected because every game embed on the site
+            now loads from it, putting it on the critical path for the main
+            content. The takecareofshadowmilk.org/.com preconnects that used to
+            sit here are gone: those are not our domains and nothing loads from
+            them any more. */}
+        <link rel="preconnect" href="https://scratch.mit.edu" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />

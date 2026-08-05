@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useIframeGame } from '@/hooks/useGameState';
+import { scratchEmbedUrl, ORIGINAL_PROJECT_ID } from '@/data/gamesData';
 
 /*
   The signature element: the game sits inside a harlequin proscenium — a
@@ -64,9 +65,20 @@ export const GameHero: React.FC = () => {
           {/* Stage */}
           <div className="p-3 sm:p-4">
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-ink-deep sm:aspect-video">
+              {/*
+                The homepage plays the original project, embedded from Scratch
+                via the same helper the detail pages use.
+
+                This iframe pointed at takecareofshadowmilk.org until the embed
+                migration, which moved the 24 detail pages but missed this one —
+                so the homepage kept loading the main game from a domain we do
+                not own, and once that origin came out of the CSP frame-src
+                allowlist the stage rendered blank. Derive the URL, never hardcode
+                it, so there is one place to change.
+              */}
               <iframe
                 ref={iframeRef}
-                src="https://takecareofshadowmilk.org/take-care-of-shadow-milk.embed"
+                src={scratchEmbedUrl(ORIGINAL_PROJECT_ID)}
                 className="h-full w-full"
                 title={t('home.hero.gameTitle')}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
