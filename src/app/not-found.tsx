@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { FLAGSHIP_GAME_PATH } from '@/lib/seo';
 
 /*
   Server component on purpose. As a client component it inherited the root
@@ -31,7 +32,7 @@ export default function NotFound() {
           still where you left it.
         </p>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Link href="/game" className="btn-primary">
+          <Link href={FLAGSHIP_GAME_PATH} className="btn-primary">
             Play the game
           </Link>
           <Link href="/games" className="btn-secondary">

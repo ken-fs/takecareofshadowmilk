@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { FLAGSHIP_GAME_PATH } from '@/lib/seo';
 import { Menu, X, Search, Home, Gamepad2, Info, Mail } from 'lucide-react';
 
 export function Header() {
@@ -12,7 +13,7 @@ export function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navItems = [
-    { href: '/game', label: t('navigation.game'), icon: Gamepad2 },
+    { href: FLAGSHIP_GAME_PATH, label: t('navigation.game'), icon: Gamepad2 },
     { href: '/', label: t('navigation.home'), icon: Home },
     { href: '/games', label: t('navigation.games'), icon: Gamepad2 },
     { href: '/about', label: t('navigation.about'), icon: Info },
@@ -39,7 +40,7 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-1 lg:flex">
             {navItems
-              .filter((item) => item.href !== '/game')
+              .filter((item) => item.href !== FLAGSHIP_GAME_PATH)
               .map((item) => (
                 <Link
                   key={item.href}
@@ -65,7 +66,7 @@ export function Header() {
             {/* Language Switcher */}
             <LanguageSwitcher />
 
-            <Link href="/game" className="btn-primary hidden lg:inline-flex">
+            <Link href={FLAGSHIP_GAME_PATH} className="btn-primary hidden lg:inline-flex">
               {t('navigation.game')}
             </Link>
 
@@ -105,7 +106,7 @@ export function Header() {
           <div className="animate-fade-in pb-4 lg:hidden">
             <div className="space-y-1">
               {navItems
-                .filter((item) => item.href !== '/game')
+                .filter((item) => item.href !== FLAGSHIP_GAME_PATH)
                 .map((item) => {
                   const Icon = item.icon;
                   return (
@@ -121,7 +122,7 @@ export function Header() {
                   );
                 })}
               <Link
-                href="/game"
+                href={FLAGSHIP_GAME_PATH}
                 onClick={() => setMobileMenuOpen(false)}
                 className="btn-primary mt-3 w-full"
               >

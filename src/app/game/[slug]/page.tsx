@@ -4,8 +4,23 @@ import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { GAMES, getGameBySlug, getGamesByCategory } from '@/data/gamesData';
+import {
+  GAMES,
+  getGameBySlug,
+  getGamesByCategory,
+  scratchEmbedUrl,
+  scratchProjectUrl,
+  ORIGINAL_PROJECT_ID,
+} from '@/data/gamesData';
 import { getGameDetail } from '@/data/gameDetails';
+import {
+  getScratchStats,
+  formatCount,
+  formatSharedDate,
+  SCRATCH_STATS_AS_OF,
+} from '@/data/scratchStats';
+import { buildGameFaq } from '@/lib/gameFaq';
+import { GAME_AUTHOR } from '@/lib/seo';
 
 export default function GameDetailPage() {
   const params = useParams<{ slug: string }>();
@@ -49,13 +64,19 @@ export default function GameDetailPage() {
   }
 
   /*
-    No fallback embed. This used to default to the anchor game's embed URL,
-    which meant a page with no embed of its own silently served a different
-    game under its own name. A page that cannot host its game should say so and
-    route the visitor somewhere real instead.
+    Embeds resolve from the game's own Scratch project id. No fallback: a page
+    with no source of its own used to silently serve the anchor game's embed
+    under a different name.
+
+    Previously these iframes pointed at takecareofshadowmilk.com/.org — domains
+    we do not own — so the substance of every variant page sat on a competitor's
+    server. Scratch is where these projects are actually published.
   */
-  const embedSrc = game.embedUrl;
+  const embedSrc = game.scratchProjectId ? scratchEmbedUrl(game.scratchProjectId) : undefined;
   const canEmbed = Boolean(embedSrc);
+  const isOriginal = game.scratchProjectId === ORIGINAL_PROJECT_ID;
+  const stats = getScratchStats(game.scratchProjectId);
+  const faq = buildGameFaq(game);
 
   return (
     <main className="relative">
@@ -86,22 +107,100 @@ export default function GameDetailPage() {
           </div>
         ) : (
           <div className="card p-8">
-            {game.externalUrl ? (
-              <div className="space-y-4">
-                <p className="text-gray-300">{t('game.detail.externalLinkTip')}</p>
-                <a href={game.externalUrl} target="_blank" rel="noopener noreferrer" className="btn-primary inline-block">{t('game.detail.playExternally')}</a>
-                <p className="text-xs text-gray-500">{t('game.detail.opensInNewTab')}</p>
-              </div>
-            ) : (
-              <>
-                <p className="text-gray-300 mb-6">{t('sidebar.discoverGames')}</p>
-                <div className="flex gap-4">
-                  <Link href="/game" className="btn-primary">{t('home.hero.startGame')}</Link>
-                  <Link href="/games" className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-gray-200 transition-colors">{t('navigation.games')}</Link>
-                </div>
-              </>
-            )}
+            <p className="text-gray-300 mb-6">{t('sidebar.discoverGames')}</p>
+            <div className="flex gap-4">
+              <Link href="/games" className="btn-primary">{t('navigation.games')}</Link>
+              <Link href="/category/shadow-milk-variants" className="px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-gray-200 transition-colors">{t('navigation.home')}</Link>
+            </div>
           </div>
+        )}
+
+        {/*
+          Credit block. Two jobs at once: it is the attribution these creators
+          are owed under Scratch's CC BY-SA terms, and it is content that only
+          this page can carry — a named author, a real project link, and the
+          remix lineage back to the original. The previous "play externally"
+          button sent visitors to a competitor's domain instead.
+        */}
+        {game.scratchProjectId && game.scratchAuthor && (
+          <section className="mt-8 max-w-3xl rounded-xl border border-white/10 bg-white/5 p-5">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-400 mb-3">
+              Source and credit
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              {isOriginal ? (
+                <>
+                  Created by{' '}
+                  <a
+                    href={`https://scratch.mit.edu/users/${game.scratchAuthor}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-300 underline hover:text-purple-200"
+                  >
+                    {game.scratchAuthor}
+                  </a>{' '}
+                  and published on Scratch, where it has been remixed hundreds of
+                  times — every variant in this collection descends from it.
+                </>
+              ) : (
+                <>
+                  This variant was made by{' '}
+                  <a
+                    href={`https://scratch.mit.edu/users/${game.scratchAuthor}/`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-purple-300 underline hover:text-purple-200"
+                  >
+                    {game.scratchAuthor}
+                  </a>
+                  , remixed from the original{' '}
+                  <Link
+                    href="/game/take-care-of-shadow-milk"
+                    className="text-purple-300 underline hover:text-purple-200"
+                  >
+                    Take Care of Your Own Shadow Milk
+                  </Link>{' '}
+                  by {GAME_AUTHOR}.
+                </>
+              )}
+            </p>
+            {/*
+              Real measured numbers from the Scratch API, with the date they were
+              read. The `rating` and `plays` fields in gamesData are editorial
+              placeholders and are deliberately not shown anywhere — these are
+              the only publishable figures on this page.
+            */}
+            {stats && (
+              <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {[
+                  { label: 'Plays on Scratch', value: formatCount(stats.views) },
+                  { label: 'Loves', value: formatCount(stats.loves) },
+                  { label: 'Remixes of this', value: formatCount(stats.remixes) },
+                  { label: 'First shared', value: formatSharedDate(stats.shared) },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="text-xs uppercase tracking-wider text-gray-500">
+                      {stat.label}
+                    </dt>
+                    <dd className="mt-1 text-sm font-bold text-gray-300">{stat.value}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
+
+            <p className="mt-3 text-sm text-gray-500">
+              Playing above via the official Scratch player.{' '}
+              <a
+                href={scratchProjectUrl(game.scratchProjectId)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:text-gray-300"
+              >
+                View project #{game.scratchProjectId} on Scratch
+              </a>
+              {stats ? ` Figures above as recorded on ${formatSharedDate(SCRATCH_STATS_AS_OF)}.` : '.'}
+            </p>
+          </section>
         )}
 
         {/* Editorial copy. These pages used to be ~60 words each with most of
@@ -113,6 +212,22 @@ export default function GameDetailPage() {
               About {game.name}
             </h2>
             <p className="leading-relaxed text-gray-400">{detail.body}</p>
+
+            {/*
+              The creator's own account of the project, paraphrased from their
+              Scratch page. This is deliberately attributed rather than presented
+              as our own copy — it is their words about their work, and it is the
+              one thing on the page no aggregator can reproduce without going to
+              the same source.
+            */}
+            {detail.creatorNote && game.scratchAuthor && (
+              <>
+                <h3 className="mt-8 mb-3 text-lg font-bold text-gray-200">
+                  What {game.scratchAuthor} says about it
+                </h3>
+                <p className="leading-relaxed text-gray-400">{detail.creatorNote}</p>
+              </>
+            )}
 
             {detail.tips && (
               <>
@@ -135,6 +250,27 @@ export default function GameDetailPage() {
                 Tags: {game.tags.join(' · ')}
               </p>
             )}
+          </section>
+        )}
+
+        {/*
+          FAQ. Answers are generated from the same verified fields the credit
+          block uses, so they stay true if the data changes and cannot contradict
+          the FAQPage JSON-LD emitted in the layout from the same builder.
+        */}
+        {faq.length > 0 && (
+          <section className="mt-14 max-w-3xl">
+            <h2 className="mb-4 text-2xl font-bold text-gray-200">
+              Questions about {game.name}
+            </h2>
+            <dl className="space-y-6">
+              {faq.map((entry) => (
+                <div key={entry.question}>
+                  <dt className="font-bold text-gray-300">{entry.question}</dt>
+                  <dd className="mt-2 leading-relaxed text-gray-400">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
           </section>
         )}
 

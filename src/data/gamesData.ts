@@ -27,11 +27,44 @@ export interface Game {
   isTrending: boolean;
   isFeatured: boolean;
   thumbnailUrl?: string;
-  gameUrl?: string; // internal route
-  embedUrl?: string; // optional iframe source if embeddable
-  externalUrl?: string; // fallback external play link
   tags: string[];
+  /**
+   * The Scratch project this page hosts. Every embed and every credit line is
+   * derived from this — see SCRATCH_EMBED_URL / scratchProjectUrl below.
+   *
+   * Why this field exists: embeds used to point at takecareofshadowmilk.com and
+   * .org, neither of which we own. That handed the substance of 25 pages to a
+   * competitor's server (they can kill all of them with one X-Frame-Options
+   * header, and the pages would still return 200), while our own HTML carried
+   * ~140 words. Scratch is the actual source, allows framing, and naming the
+   * real author is the correct attribution besides.
+   *
+   * `scratchAuthor` is the Scratch username that published THIS project — for
+   * remixes that is the remixer, not GPE_sb3. Do not fill either field from a
+   * title match alone: every id below was checked against
+   * api.scratch.mit.edu/projects/<id> and its remix.root confirmed to be the
+   * original 1206876997, which is what proves it is the same care loop rather
+   * than an unrelated project with a similar name.
+   */
+  scratchProjectId?: number;
+  scratchAuthor?: string;
 }
+
+/*
+  Scratch's official embed player. Verified to return 200 and to send no
+  X-Frame-Options / frame-ancestors header, so it can legitimately be framed.
+*/
+export function scratchEmbedUrl(projectId: number): string {
+  return `https://scratch.mit.edu/projects/${projectId}/embed`;
+}
+
+/* The project's page on Scratch — where credit should point. */
+export function scratchProjectUrl(projectId: number): string {
+  return `https://scratch.mit.edu/projects/${projectId}/`;
+}
+
+/* The original that every variant in this collection is a remix of. */
+export const ORIGINAL_PROJECT_ID = 1206876997;
 
 export type GameCategory =
   | 'scratch-games'
@@ -110,9 +143,8 @@ export const GAMES: Game[] = [
     isNew: true,
     isTrending: true,
     isFeatured: true,
-    gameUrl: '/game',
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-shadow-milk',
-    embedUrl: 'https://takecareofshadowmilk.org/take-care-of-shadow-milk.embed',
+    scratchProjectId: 1206876997,
+    scratchAuthor: 'GPE_sb3',
     tags: ['virtual pet', 'cookie run', 'scratch', 'simulation', 'cute'],
   },
   // Shadow Milk Variants from reference site
@@ -128,8 +160,8 @@ export const GAMES: Game[] = [
     isNew: true,
     isTrending: true,
     isFeatured: true,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-remix',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-remix',
+    scratchProjectId: 1207503015,
+    scratchAuthor: 'scratchgamer01_1',
     tags: ['shadow milk', 'remix', 'virtual pet', 'scratch'],
   },
   {
@@ -144,8 +176,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: true,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-pure-vanilla',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-pure-vanilla',
+    scratchProjectId: 1207530067,
+    scratchAuthor: 'Scratchy_whynot',
     tags: ['pure vanilla', 'virtual pet', 'cookie'],
   },
   {
@@ -160,8 +192,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-burning-spice',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-burning-spice',
+    scratchProjectId: 1207373782,
+    scratchAuthor: 'Jasper-Was-Here',
     tags: ['burning spice', 'spicy', 'virtual pet'],
   },
   {
@@ -176,8 +208,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: true,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-hollyberry',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-hollyberry',
+    scratchProjectId: 1207007542,
+    scratchAuthor: 'zzzoeldon',
     tags: ['hollyberry', 'virtual pet', 'cookie'],
   },
   {
@@ -192,8 +224,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-sage-of-truth',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-sage-of-truth',
+    scratchProjectId: 1207094046,
+    scratchAuthor: '_y0ur_l0cal_l0lip0p_',
     tags: ['sage of truth', 'mystery', 'virtual pet'],
   },
   {
@@ -208,8 +240,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-eternal-sugar',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-eternal-sugar',
+    scratchProjectId: 1207179986,
+    scratchAuthor: 'csmoreweirdo22',
     tags: ['eternal sugar', 'sweet', 'virtual pet'],
   },
   {
@@ -224,8 +256,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-white-lily',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-white-lily',
+    scratchProjectId: 1208159039,
+    scratchAuthor: 'ThatgirlisnotslayIam',
     tags: ['white lily', 'flower', 'virtual pet'],
   },
   {
@@ -240,8 +272,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: true,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-golden-cheese-cookie',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-golden-cheese-cookie',
+    scratchProjectId: 1208396387,
+    scratchAuthor: 'gr33oly',
     tags: ['golden cheese', 'cookie', 'virtual pet'],
   },
   {
@@ -256,8 +288,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-dark-choco',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-dark-choco',
+    scratchProjectId: 1208344487,
+    scratchAuthor: 'kxrnelovvski',
     tags: ['dark choco', 'chocolate', 'virtual pet'],
   },
   {
@@ -272,8 +304,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-butter-roll',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-butter-roll',
+    scratchProjectId: 1207766068,
+    scratchAuthor: 'bipato',
     tags: ['butter roll', 'bakery', 'virtual pet'],
   },
   // --- Additional variants from reference sitemap ---
@@ -289,8 +321,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-truthless-recluse',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-truthless-recluse',
+    scratchProjectId: 1207505946,
+    scratchAuthor: 'tr_ashhhh',
     tags: ['truthless recluse', 'variant', 'virtual pet'],
   },
   {
@@ -305,8 +337,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-fount',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-fount',
+    scratchProjectId: 1207993329,
+    scratchAuthor: 'SILVESTURRR',
     tags: ['fount', 'variant', 'virtual pet'],
   },
   {
@@ -321,8 +353,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-but-with-a-beer-bottle',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-but-with-a-beer-bottle',
+    scratchProjectId: 1207086308,
+    scratchAuthor: 'larzz0_O',
     tags: ['beer bottle', 'quirky', 'virtual pet'],
   },
   {
@@ -337,8 +369,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-silent-salt',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-silent-salt',
+    scratchProjectId: 1208084312,
+    scratchAuthor: 'nyanvxa',
     tags: ['silent salt', 'variant', 'virtual pet'],
   },
   {
@@ -353,8 +385,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-two-s-tpot-bfb',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-two-s-tpot-bfb',
+    scratchProjectId: 1207996152,
+    scratchAuthor: 'Limey0_1',
     tags: ['tpot', 'bfb', 'variant'],
   },
   {
@@ -369,8 +401,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-book',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-book',
+    scratchProjectId: 1209290797,
+    scratchAuthor: 'cheeseandcatlover',
     tags: ['book', 'variant', 'virtual pet'],
   },
   {
@@ -385,8 +417,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-wily',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-wily',
+    scratchProjectId: 1207350965,
+    scratchAuthor: 'bunnibuns',
     tags: ['wily', 'variant'],
   },
   {
@@ -401,8 +433,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-pursuer',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-pursuer',
+    scratchProjectId: 1264738581,
+    scratchAuthor: 'Just_Silly05',
     tags: ['pursuer', 'variant'],
   },
   {
@@ -417,8 +449,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-1x1x1x1',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-1x1x1x1',
+    scratchProjectId: 1207844706,
+    scratchAuthor: 'zrowniegalaxy12',
     tags: ['1x1x1x1', 'variant'],
   },
   {
@@ -433,8 +465,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: true,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-but-he-looks-like-his-in-game-sprite',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shadow-milk-but-he-looks-like-his-in-game-sprite',
+    scratchProjectId: 1207373967,
+    scratchAuthor: 'papajohn19199192',
     tags: ['sprite', 'variant'],
   },
   {
@@ -449,26 +481,22 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shelky',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-shelky',
+    scratchProjectId: 1207380313,
+    scratchAuthor: 'eri_x3',
     tags: ['shelky', 'variant'],
   },
-  {
-    id: 'masenko',
-    name: 'Take Care of Your Own Masenko',
-    slug: 'take-care-of-your-own-masenko',
-    icon: '⚡',
-    description: 'Energetic Masenko variant.',
-    rating: 4.3,
-    plays: '270K',
-    category: ['shadow-milk-variants', 'virtual-pet', 'casual-games'],
-    isNew: false,
-    isTrending: false,
-    isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-masenko',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-masenko',
-    tags: ['masenko', 'variant'],
-  },
+  /*
+    'take-care-of-your-own-masenko' was removed here. No such project exists on
+    Scratch: searches for "TAKE CARE OF YOUR OWN MASENKO", "masenko shadow milk"
+    and "take care of masenko" all return zero results, and the only Scratch
+    projects named "masenko" are unrelated Dragon Ball animations with no remix
+    link to 1206876997. Its only content was an iframe of a domain we do not own
+    plus the invented blurb "Energetic Masenko variant."
+
+    This is the same class of entry deleted in 76e5789. Publishing a page for a
+    game that cannot be shown to exist is the thin-content problem in its purest
+    form, so the route is gone rather than left to 404 its own embed.
+  */
   {
     id: 'gamzee-makara',
     name: 'Take Care of Your Own Gamzee Makara',
@@ -481,8 +509,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-gamzee-makara',
-    embedUrl: 'https://takecareofshadowmilk.com/take-care-of-your-own-gamzee-makara',
+    scratchProjectId: 1207138547,
+    scratchAuthor: 'therealbasilfan',
     tags: ['gamzee', 'variant'],
   },
   {
@@ -497,8 +525,8 @@ export const GAMES: Game[] = [
     isNew: false,
     isTrending: false,
     isFeatured: false,
-    externalUrl: 'https://takecareofshadowmilk.com/v1-take-care-of-your-own-eternal-sugar',
-    embedUrl: 'https://takecareofshadowmilk.com/v1-take-care-of-your-own-eternal-sugar',
+    scratchProjectId: 1207714438,
+    scratchAuthor: 'A3onNeo',
     tags: ['eternal sugar', 'v1', 'variant'],
   },
 ];

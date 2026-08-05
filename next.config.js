@@ -8,7 +8,10 @@ const nextConfig = {
   
   // 图片优化
   images: {
-    domains: ['takecareofshadowmilk.org'],
+    // takecareofshadowmilk.org was removed: it is not our domain and no <img>
+    // on the site ever pointed at it. Scratch thumbnails live on
+    // cdn2.scratch.mit.edu if they are ever needed.
+    domains: ['cdn2.scratch.mit.edu'],
     formats: ['image/webp', 'image/avif'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -28,9 +31,34 @@ const nextConfig = {
         destination: '/',
         permanent: true,
       },
+      /*
+        /game and /game/take-care-of-shadow-milk both targeted the same query
+        ("play take care of shadow milk") with near-identical titles, so they
+        were competing with each other. The detail page wins: it carries the
+        real embed, the VideoGame schema and the author credit, whereas /game
+        was a second-party reimplementation of the same care loop.
+
+        /play pointed at /game and now follows it to the same destination
+        rather than chaining through a redirect.
+      */
+      {
+        source: '/game',
+        destination: '/game/take-care-of-shadow-milk',
+        permanent: true,
+      },
       {
         source: '/play',
-        destination: '/game',
+        destination: '/game/take-care-of-shadow-milk',
+        permanent: true,
+      },
+      /*
+        Removed game route. 'masenko' had no verifiable Scratch source (see the
+        note in gamesData.ts), so its page is gone; without this it would be a
+        soft 404 that Google keeps recrawling.
+      */
+      {
+        source: '/game/take-care-of-your-own-masenko',
+        destination: '/category/shadow-milk-variants',
         permanent: true,
       },
     ];
@@ -79,11 +107,13 @@ const nextConfig = {
               "img-src 'self' data: blob: https:",
               "font-src 'self' data:",
               "connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://*.clarity.ms https://*.googlesyndication.com https://*.google.com https://*.adtrafficquality.google https://*.doubleclick.net",
-              // Both game hosts. .org serves only the anchor game's embed; the
-              // other 31 games are iframed from .com. Omitting .com here broke
-              // all 31 — the pages still returned 200 with an empty game area,
-              // which is why it did not show up as a broken link.
-              "frame-src 'self' https://takecareofshadowmilk.org https://takecareofshadowmilk.com https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com",
+              // Games are framed from scratch.mit.edu, the platform they are
+              // actually published on. The previous value allowed
+              // takecareofshadowmilk.org and .com — domains we do not own, which
+              // meant every game page depended on a third party's server and
+              // could be blanked by one X-Frame-Options header on their side
+              // while our pages kept returning 200.
+              "frame-src 'self' https://scratch.mit.edu https://*.googlesyndication.com https://*.doubleclick.net https://*.adtrafficquality.google https://www.google.com",
               "base-uri 'self'",
               "form-action 'self'",
               "object-src 'none'",

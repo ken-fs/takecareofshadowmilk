@@ -2,6 +2,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import Link from 'next/link';
 import { getFeaturedGames } from '@/data/gamesData';
 import { shortGameName } from '@/lib/utils';
+import { FLAGSHIP_GAME_PATH } from '@/lib/seo';
 
 /*
   The old version printed the same four games twice — once as "Featured", once
@@ -70,7 +71,7 @@ export function FeaturedGames() {
               {t('home.featuredGames.ctaDescription')}
             </p>
           </div>
-          <Link href="/game" className="btn-primary shrink-0">
+          <Link href={FLAGSHIP_GAME_PATH} className="btn-primary shrink-0">
             {t('home.featuredGames.startGameButton')}
           </Link>
         </div>

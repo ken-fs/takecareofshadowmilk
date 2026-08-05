@@ -1,6 +1,12 @@
 import type { Metadata } from 'next';
 import { GAME_CATEGORIES, getGamesByCategory, type GameCategory } from '@/data/gamesData';
-import { buildMetadata, jsonLdScript, SITE_URL, absoluteUrl } from '@/lib/seo';
+import {
+  buildMetadata,
+  jsonLdScript,
+  SITE_URL,
+  absoluteUrl,
+  breadcrumbJsonLd,
+} from '@/lib/seo';
 
 type Props = { params: { category: string } };
 
@@ -55,9 +61,15 @@ export default function CategoryLayout({
     },
   };
 
+  const breadcrumb = breadcrumbJsonLd([
+    { name: 'Games', path: '/games' },
+    { name: category.name, path: `/category/${category.id}` },
+  ]);
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(jsonLd)} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={jsonLdScript(breadcrumb)} />
       {children}
     </>
   );

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { GAMES } from '@/data/gamesData';
-import { CONTACT_EMAIL, GAME_AUTHOR } from '@/lib/seo';
+import { CONTACT_EMAIL, GAME_AUTHOR, FLAGSHIP_GAME_PATH } from '@/lib/seo';
 
 /*
   Was 70 words: one sentence of boilerplate plus the disclaimer. An About page
@@ -108,7 +108,7 @@ export default function AboutPage() {
           </section>
 
           <div className="flex flex-wrap gap-4 border-t border-white/10 pt-6">
-            <Link href="/game" className="btn-primary">
+            <Link href={FLAGSHIP_GAME_PATH} className="btn-primary">
               {t('home.hero.startGame')}
             </Link>
             <Link href="/games" className="text-purple-300 underline hover:text-purple-200 self-center">
