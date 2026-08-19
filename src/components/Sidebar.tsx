@@ -5,6 +5,8 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { TrendingUp } from 'lucide-react';
 import { getTrendingGames, getGameById } from '@/data/gamesData';
 import { shortGameName } from '@/lib/utils';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
+import { SIDEBAR } from '@/lib/ads';
 
 export function Sidebar() {
   const { t } = useLanguage();
@@ -26,6 +28,14 @@ export function Sidebar() {
 
   return (
     <aside className="w-full shrink-0 space-y-10 lg:w-64 lg:pt-8">
+      {/* Adsterra 300x250 — renders nothing until SIDEBAR.key is set in
+          src/lib/ads.ts (kept empty while AdSense is under review). */}
+      {SIDEBAR.key && (
+        <div className="flex justify-center">
+          <AdsterraBanner slot={SIDEBAR} />
+        </div>
+      )}
+
       {/* Categories — a plain list; the count is the only data that matters */}
       <nav>
         <p className="eyebrow">{t('footer.gameCategories')}</p>
