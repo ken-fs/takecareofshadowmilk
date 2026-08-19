@@ -4,7 +4,7 @@ import Script from 'next/script';
 import './globals.css';
 import { LanguageProvider } from '@/contexts/LanguageContext';
 import { Header } from '@/components/Header';
-import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript, ADSENSE_PUBLISHER_ID } from '@/lib/seo';
+import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript } from '@/lib/seo';
 
 // Display: carnival-poster serif. Body: rounded and plush. Mono: game telemetry.
 const fraunces = Fraunces({
@@ -159,23 +159,6 @@ export default function RootLayout({
         <link rel="preconnect" href="https://scratch.mit.edu" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
-        {/*
-          AdSense loader as a raw tag, on purpose. Via <Script
-          strategy="afterInteractive"> the server HTML got only a
-          <link rel="preload">, with the real tag serialized into the RSC
-          payload and injected client-side — invisible to AdSense's verification
-          crawler, which does not execute JS and reads only <head>. A literal
-          tag here is what "place this between <head> and </head>" means.
-
-          `async` keeps it off the critical path. The layout does not remount on
-          client-side navigation, so this is not re-injected.
-        */}
-        <script
-          async
-          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-${ADSENSE_PUBLISHER_ID}`}
-          crossOrigin="anonymous"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={jsonLdScript(siteJsonLd)}
@@ -209,8 +192,6 @@ export default function RootLayout({
             gtag('config', 'G-KY850MFQQZ');
           `}
         </Script>
-        {/* The AdSense loader lives in <head> — see the comment there for why
-            it is a raw tag rather than next/script. */}
         <LanguageProvider>
           {/* Global navigation */}
           <Header />

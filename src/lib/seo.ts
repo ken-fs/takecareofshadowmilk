@@ -20,13 +20,6 @@ export const GAME_AUTHOR = 'GPE_sb3';
 */
 export const CONTACT_EMAIL = 'contact@takecareofshadowmilk.site';
 
-/*
-  AdSense publisher ID. Used by both the loader tag in the root layout and
-  /ads.txt — keeping them derived from one constant means they cannot drift
-  apart, and a mismatch between them is exactly what AdSense rejects.
-*/
-export const ADSENSE_PUBLISHER_ID = 'pub-4969757168101127';
-
 export function absoluteUrl(path: string): string {
   return path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;
 }

@@ -1,13 +1,8 @@
 // Adsterra ad-unit config. Each format created in the Adsterra dashboard gives
 // you a "key" (a hex string) via GET CODE. Paste it here. A slot with an empty
-// key renders nothing, so this file is safe to ship before you're ready — the
-// ad only appears once the key is filled in.
+// key renders nothing.
 //
-// IMPORTANT: this site's AdSense is still under review. Do NOT fill the key
-// (i.e. do not make Adsterra ads appear) until AdSense's review completes —
-// live third-party ads during review can get AdSense rejected. Fill the key
-// only after AdSense is approved (they can then coexist) or after you decide to
-// drop AdSense.
+// This site runs Adsterra only (AdSense was removed 2026-08-19).
 //
 // The classic Banner code Adsterra hands you looks like:
 //   atOptions = { key: 'abc123...', format: 'iframe', height: 250, width: 300, params: {} }
@@ -22,7 +17,7 @@ export type AdSlot = {
 
 // Sidebar 300x250, rendered inside the existing <Sidebar /> component.
 export const SIDEBAR: AdSlot = {
-  key: "", // <-- paste your 300x250 banner key here (see the warning above)
+  key: "eda4e6812a4dc9958f2b10bf47ee4929", // 300x250 banner
   width: 300,
   height: 250,
 };
