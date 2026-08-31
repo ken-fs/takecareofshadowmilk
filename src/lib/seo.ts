@@ -6,7 +6,7 @@ import type { Metadata } from 'next';
   across four files while the real origin is https:// + www — that mismatch is
   why 43 URLs pointed at a redirecting address.
 */
-export const SITE_URL = 'https://www.takecareofshadowmilk.site';
+export const SITE_URL = 'https://www.takecareofshadowmilk.life';
 export const SITE_NAME = 'Take Care of Shadow Milk';
 
 /* The Scratch author of the original game. A person, not an organisation. */
@@ -18,7 +18,7 @@ export const GAME_AUTHOR = 'GPE_sb3';
   E-E-A-T gap for a site hosting someone else's game. A published address that
   bounces is worse than the original problem — create it or change it here.
 */
-export const CONTACT_EMAIL = 'contact@takecareofshadowmilk.site';
+export const CONTACT_EMAIL = 'contact@takecareofshadowmilk.life';
 
 export function absoluteUrl(path: string): string {
   return path === '/' ? `${SITE_URL}/` : `${SITE_URL}${path}`;

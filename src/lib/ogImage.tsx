@@ -122,7 +122,7 @@ export function renderOgImage({
             </div>
           </div>
           <div style={{ fontSize: 26, color: BONE, opacity: 0.5 }}>
-            {footnote ?? 'takecareofshadowmilk.site'}
+            {footnote ?? 'takecareofshadowmilk.life'}
           </div>
         </div>
       </div>
