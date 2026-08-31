@@ -1,0 +1,11 @@
+# /game and /game/take-care-of-shadow-milk both targeted the same query
+# ("play take care of shadow milk") with near-identical titles, so they were
+# competing with each other. The detail page wins: it carries the real embed,
+# the VideoGame schema and the author credit. /play follows it to the same
+# destination rather than chaining through a redirect.
+/home / 301
+/game /game/take-care-of-shadow-milk/ 301
+/play /game/take-care-of-shadow-milk/ 301
+# 'masenko' had no verifiable Scratch source (see gamesData.ts), so its page is
+# gone; without this it would be a soft 404 that Google keeps recrawling.
+/game/take-care-of-your-own-masenko /category/shadow-milk-variants/ 301
