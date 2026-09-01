@@ -21,6 +21,8 @@ import {
 } from '@/data/scratchStats';
 import { buildGameFaq } from '@/lib/gameFaq';
 import { GAME_AUTHOR } from '@/lib/seo';
+import { AdsterraBanner } from '@/components/AdsterraBanner';
+import { SIDEBAR, LEADERBOARD } from '@/lib/ads';
 
 export default function GameDetailPage() {
   const params = useParams<{ slug: string }>();
@@ -203,6 +205,12 @@ export default function GameDetailPage() {
           </section>
         )}
 
+        {/* 300x250 below the embed/stats — the highest-viewability slot on
+            the highest-traffic pages. */}
+        <div className="mt-10 flex justify-center">
+          <AdsterraBanner slot={SIDEBAR} />
+        </div>
+
         {/* Editorial copy. These pages used to be ~60 words each with most of
             that shared across all 32 of them; this section is where the
             page-specific substance lives. */}
@@ -297,6 +305,11 @@ export default function GameDetailPage() {
             </ul>
           </section>
         )}
+
+        {/* 728x90 bottom leaderboard — fixed-width creative, so desktop only. */}
+        <div className="mt-14 hidden justify-center md:flex">
+          <AdsterraBanner slot={LEADERBOARD} />
+        </div>
       </div>
     </main>
   );

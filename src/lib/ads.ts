@@ -15,13 +15,21 @@ export type AdSlot = {
   height: number;
 };
 
-// Sidebar 300x250, rendered inside the existing <Sidebar /> component.
+// 300x250 medium rectangle — rendered in <Sidebar /> (home) and on game pages.
 export const SIDEBAR: AdSlot = {
-  key: "eda4e6812a4dc9958f2b10bf47ee4929", // 300x250 banner
+  key: "a2d9b581b0dcae86d361a11ea5a694f4", // 300x250 banner (takecareofshadowmilk.life)
   width: 300,
   height: 250,
 };
 
+// 728x90 leaderboard — game pages only; hidden on mobile (fixed-width creative).
+export const LEADERBOARD: AdSlot = {
+  key: "cedfde86c322cf05f099578597b27599", // 728x90 banner (takecareofshadowmilk.life)
+  width: 728,
+  height: 90,
+};
+
 // Adsterra's invoke.js host. Usually www.highperformanceformat.com, but the
 // snippet from GET CODE may use a different host — if so, change this.
-export const INVOKE_HOST = "www.highperformanceformat.com";
+// The host must also be allowlisted in public/_headers CSP or ads die silently.
+export const INVOKE_HOST = "www.highrevenueformat.com";
