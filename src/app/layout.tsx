@@ -192,6 +192,13 @@ export default function RootLayout({
             gtag('config', 'G-KY850MFQQZ');
           `}
         </Script>
+        {/* Adsterra Social Bar — 全站广告。域名必须同时加进 _headers 的 CSP，
+            否则会被 script-src 拦截（改 CSP 前先看 _headers 顶部注释） */}
+        <Script
+          src="https://pl31121148.profitableratecpmnetwork.com/9f/0c/a0/9f0ca03a52fd8a38855d00351c8f44fd.js"
+          strategy="lazyOnload"
+          data-cfasync="false"
+        />
         <LanguageProvider>
           {/* Global navigation */}
           <Header />
