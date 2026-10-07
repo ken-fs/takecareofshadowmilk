@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Fraunces, Nunito, DM_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import Script from 'next/script';
 import './globals.css';
 import { LanguageProvider } from '@/contexts/LanguageContext';
@@ -7,22 +7,29 @@ import { Header } from '@/components/Header';
 import { SITE_URL, SITE_NAME, absoluteUrl, jsonLdScript } from '@/lib/seo';
 
 // Display: carnival-poster serif. Body: rounded and plush. Mono: game telemetry.
-const fraunces = Fraunces({
-  subsets: ['latin'],
-  axes: ['SOFT', 'WONK'],
+// Fonts are self-hosted (src/fonts, OFL). next/font/google downloads them during the build,
+// and when that download flakes on Cloudflare's builders the whole build fails
+// ("Can't resolve '@vercel/turbopack-next/internal/font/google/font'", 2026-10-06).
+// Fraunces uses the "full" file so the SOFT and WONK axes in globals.css keep working.
+const fraunces = localFont({
+  src: '../fonts/fraunces-latin-full-normal.woff2',
+  weight: '100 900',
   display: 'swap',
   variable: '--font-display',
 });
 
-const nunito = Nunito({
-  subsets: ['latin'],
+const nunito = localFont({
+  src: '../fonts/nunito-latin-wght-normal.woff2',
+  weight: '200 1000',
   display: 'swap',
   variable: '--font-body',
 });
 
-const dmMono = DM_Mono({
-  subsets: ['latin'],
-  weight: ['400', '500'],
+const dmMono = localFont({
+  src: [
+    { path: '../fonts/dm-mono-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: '../fonts/dm-mono-latin-500-normal.woff2', weight: '500', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-mono',
 });
