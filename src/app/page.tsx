@@ -4,6 +4,7 @@ import { Sidebar } from '@/components/Sidebar';
 import { GameHero } from '@/components/GameHero';
 import { GameFeatures } from '@/components/GameFeatures';
 import { GameSummary } from '@/components/GameSummary';
+import { HomeFaq } from '@/components/HomeFaq';
 import { FeaturedGames } from '@/components/FeaturedGames';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -20,6 +21,7 @@ export default function HomePage() {
             <div className="min-w-0 flex-1">
               <GameHero />
               <GameSummary />
+              <HomeFaq />
               <GameFeatures />
               <FeaturedGames />
             </div>
