@@ -13,3 +13,6 @@
 # gone; without this it would be a soft 404 that Google keeps recrawling.
 /game/take-care-of-your-own-masenko /category/shadow-milk-variants/ 301
 /game/take-care-of-your-own-masenko/ /category/shadow-milk-variants/ 301
+
+# Fleet deploy marker (Cloudflare's asset uploader skips dot-directories)
+/.well-known/deploy.txt  /deploy-marker.txt  200

@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "generate:favicon": "python3 scripts/generate_favicon.py"
+    "generate:favicon": "python3 scripts/generate_favicon.py",
+    "prebuild": "node scripts/write-deploy-marker.mjs"
   },
   "dependencies": {
     "@types/node": "^20.0.0",
