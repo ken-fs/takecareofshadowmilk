@@ -1,3 +1,8 @@
+# Cloudflare Workers static assets: the generated share card has no extension (Next metadata route),
+# so say it is a PNG; some crawlers (Facebook, Discord) drop images served as octet-stream.
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
 # Every game is a cross-origin iframe, so frame-src has to allow each host it
 # embeds from — verify against gamesData.ts before editing that directive.
 # AdSense needs the googlesyndication/adtrafficquality/doubleclick origins in
